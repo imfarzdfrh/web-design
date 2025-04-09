@@ -1,26 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const isOpen = ref(false)
+const isOpen = ref(false);
 
 const links = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
-]
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+];
 
 function toggleMenu() {
-  isOpen.value = !isOpen.value
+  isOpen.value = !isOpen.value;
 }
 </script>
 
 <template>
-  <nav class="px-6 py-4 transition bg-white shadow-md dark:bg-customDark">
+  <nav
+    class="px-6 py-4 transition-all bg-white shadow-md dark:bg-darkBackground navbar dark:text-darkText"
+  >
     <div class="container flex items-center justify-between mx-auto">
       <!-- Left side: Logo + Nav Links -->
       <div class="flex items-center space-x-7">
         <!-- Logo -->
-        <NuxtLink to="/" class="text-xl font-bold text-gray-900 dark:text-gray-800">
+        <NuxtLink
+          to="/"
+          class="text-xl font-bold text-gray-900 dark:text-gray-200"
+        >
           MySite
         </NuxtLink>
 
@@ -29,7 +34,7 @@ function toggleMenu() {
           <li v-for="link in links" :key="link.to">
             <NuxtLink
               :to="link.to"
-              class="text-gray-800 transition dark:text-gray-800 hover:text-gray-600 dark:hover:text-gray-400"
+              class="text-gray-800 transition dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400"
             >
               {{ link.label }}
             </NuxtLink>
@@ -41,11 +46,12 @@ function toggleMenu() {
       <ul class="items-center hidden space-x-6 md:flex">
         <li><uiThemeSwitcher /></li>
         <li>
-          <button
-            class="text-sm font-medium text-gray-800 dark:text-gray-700 hover:text-gray-600 dark:hover:text-blue-800"
+          <NuxtLink
+            to="/login"
+            class="text-sm font-medium text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-blue-400"
           >
             Login
-          </button>
+          </NuxtLink>
         </li>
         <li>
           <button
@@ -57,7 +63,10 @@ function toggleMenu() {
       </ul>
 
       <!-- Mobile menu toggle button -->
-      <button class="text-gray-700 md:hidden dark:text-gray-300" @click="toggleMenu">
+      <button
+        class="text-gray-700 md:hidden dark:text-gray-300"
+        @click="toggleMenu"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-6 h-6"

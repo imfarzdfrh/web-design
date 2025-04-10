@@ -28,7 +28,7 @@ const props = defineProps({
             <p class="mb-4 text-gray-600">{{description}}</p>
             <div class="flex items-center justify-between">
                 <span class="text-lg font-semibold text-gray-800">{{ price }}</span>
-                <UiButtonBaseButton>Buy now</UiButtonBaseButton>
+                <UiBaseButton>Buy now</UiBaseButton>
             </div>
         </div>
     </div>

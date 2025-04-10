@@ -14,15 +14,14 @@
 <script setup>
 import { computed } from 'vue';
 
-// دریافت ورودی از props
 const props = defineProps({
   color: {
     type: String,
-    default: 'primary',  // مقدار پیش‌فرض در صورتی که رنگ مشخص نشود
+    default: 'primary', 
   },
   size: {
     type: String,
-    default: 'medium',  // مقدار پیش‌فرض سایز دکمه
+    default: 'medium', 
   },
 })
 
@@ -44,20 +43,18 @@ const buttonColorClass = computed(() => {
   }
 });
 
-// محاسبه کلاس دینامیک برای سایز دکمه
 const buttonSizeClass = computed(() => {
   switch (props.size) {
     case 'small':
-      return 'text-sm py-1 px-3'; // سایز کوچک
+      return 'text-sm py-1 px-3'; 
     case 'large':
-      return 'text-lg py-3 px-6'; // سایز بزرگ
+      return 'text-lg py-3 px-6'; 
     case 'medium':
     default:
-      return 'text-base py-2 px-5'; // سایز متوسط (مقدار پیش‌فرض)
+      return 'text-base py-2 px-5'; 
   }
 });
 </script>
 
 <style scoped>
-/* استایل‌های اضافی در اینجا قرار می‌گیرند */
 </style>

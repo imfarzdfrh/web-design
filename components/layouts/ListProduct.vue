@@ -1,7 +1,7 @@
 <template>
   <div class="dark:bg-darkBackground dark:text-darkText">
     <div class="pt-10">
-      <h1 class="font-bold text-3xl px-60">Top Sellers</h1>
+      <h1 class="font-bold text-3xl px-40">Top Sellers</h1>
     </div>
     <div class="flex flex-wrap justify-center py-12 space-x-6">
       <UiCardProduct
@@ -21,6 +21,11 @@
         price="99$" />
       <UiCardProduct
         src="temp/pic/claude.png"
+        title="ChatGpt"
+        description="text ai best performance"
+        price="99$" />
+      <UiCardProduct
+        src="temp/pic/runaway.png"
         title="ChatGpt"
         description="text ai best performance"
         price="99$" />
@@ -31,7 +36,7 @@
         price="99$" />
     </div>
     <div class="pt-10">
-      <h1 class="font-bold text-3xl px-60">Image generator</h1>
+      <h1 class="font-bold text-3xl px-40">Top Sellers</h1>
     </div>
     <div class="flex flex-wrap justify-center py-12 space-x-6">
       <UiCardProduct
@@ -51,6 +56,11 @@
         price="99$" />
       <UiCardProduct
         src="temp/pic/claude.png"
+        title="ChatGpt"
+        description="text ai best performance"
+        price="99$" />
+      <UiCardProduct
+        src="temp/pic/runaway.png"
         title="ChatGpt"
         description="text ai best performance"
         price="99$" />
@@ -61,7 +71,7 @@
         price="99$" />
     </div>
     <div class="pt-10">
-      <h1 class="font-bold text-3xl px-60">Video editor</h1>
+      <h1 class="font-bold text-3xl px-40">Top Sellers</h1>
     </div>
     <div class="flex flex-wrap justify-center py-12 space-x-6">
       <UiCardProduct
@@ -89,7 +99,13 @@
         title="ChatGpt"
         description="text ai best performance"
         price="99$" />
+        <UiCardProduct
+        src="temp/pic/runaway.png"
+        title="ChatGpt"
+        description="text ai best performance"
+        price="99$" />
     </div>
+    
   </div>
 </template>
 

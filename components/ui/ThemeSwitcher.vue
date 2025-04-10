@@ -1,10 +1,10 @@
 <template>
   <button
     @click="toggleTheme"
-    class="p-2 text-gray-700 bg-gray-200 rounded-full dark:bg-gray-800 dark:text-gray-300"
+    class="p-2 text-white bg-gray-800 rounded-md dark:bg-gray-800 dark:text-gray-300 font-bold"
   >
-    <span v-if="isDarkMode">🌙</span>
-    <span v-else>☀️</span>
+    <span v-if="isDarkMode">☀️ Light</span>
+    <span v-else>🌙 Dark</span>
   </button>
 </template>
 

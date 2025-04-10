@@ -5,9 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary:"#168aad",
+        danger:"#e71d36",
+        success:"#38b000",
+        warning:"#ffba08",
         darkBackground: "#121212", 
-        lightBackground: "#ffffff", 
-        darkText: "#f8f9fa", 
+        lightBackground: "#f8f9fa", 
+        darkText: "#fdfffc", 
         lightText: "#212529", 
       },
     },

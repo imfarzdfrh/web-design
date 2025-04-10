@@ -4,5 +4,6 @@ export const ICON_SET = [
   'linkedin',
   'moon',
   'sun',
-  'xtwitter'
+  'xtwitter',
+  'cart'
 ] as const

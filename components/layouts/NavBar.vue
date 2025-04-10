@@ -60,6 +60,7 @@ function toggleMenu() {
             Sign Up
           </button>
         </li>
+    
       </ul>
 
       <!-- Mobile menu toggle button -->

@@ -1,5 +1,5 @@
 {
   "prettier.configPath": ".prettierrc.json",
   "editor.formatOnSave": true,
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "afterDelay"
 }

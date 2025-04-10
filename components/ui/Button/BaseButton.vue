@@ -1,30 +1,63 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps<{
-  variant?: 'primary' | 'secondary' | 'danger'
-}>()
-
-const variantClass = computed(() => {
-  switch (props.variant) {
-    case 'secondary':
-      return 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-400'
-    case 'danger':
-      return 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-400'
-    default:
-      return 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-400'
-  }
-})
-</script>
-
 <template>
   <button
     :class="[
-      'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold',
+      'inline-flex items-center justify-center rounded-lg px-5 py-2 text-m font-semibold',
       'transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2',
-      variantClass,
+      buttonColorClass,
+      buttonSizeClass
     ]"
   >
     <slot />
   </button>
 </template>
+
+<script setup>
+import { computed } from 'vue';
+
+// دریافت ورودی از props
+const props = defineProps({
+  color: {
+    type: String,
+    default: 'primary',  // مقدار پیش‌فرض در صورتی که رنگ مشخص نشود
+  },
+  size: {
+    type: String,
+    default: 'medium',  // مقدار پیش‌فرض سایز دکمه
+  },
+})
+
+// محاسبه کلاس دینامیک برای رنگ
+const buttonColorClass = computed(() => {
+  switch (props.color) {
+    case 'primary':
+      return 'bg-primary text-white';
+    case 'danger':
+      return 'bg-danger text-white';
+    case 'black':
+      return 'bg-black text-white';  
+      case 'success':
+      return 'bg-success text-white'; 
+      case 'warning':
+      return 'bg-warning text-black'; 
+    default:
+      return 'bg-gray-200 text-black'; 
+  }
+});
+
+// محاسبه کلاس دینامیک برای سایز دکمه
+const buttonSizeClass = computed(() => {
+  switch (props.size) {
+    case 'small':
+      return 'text-sm py-1 px-3'; // سایز کوچک
+    case 'large':
+      return 'text-lg py-3 px-6'; // سایز بزرگ
+    case 'medium':
+    default:
+      return 'text-base py-2 px-5'; // سایز متوسط (مقدار پیش‌فرض)
+  }
+});
+</script>
+
+<style scoped>
+/* استایل‌های اضافی در اینجا قرار می‌گیرند */
+</style>

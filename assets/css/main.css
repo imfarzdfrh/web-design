@@ -5,8 +5,6 @@ html {
 body {
   transition: background-color 0.8s ease, color 0.8s ease;
   font-family: "Roboto", sans-serif;
-  background-color: #f8f9fa; 
-  color: #212529; 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,4 +19,3 @@ button {
   user-select: none;
 }
 
-/* استایل‌های اضافی که به صورت عمومی برای تگ‌ها اعمال شده‌اند حذف شده‌اند */

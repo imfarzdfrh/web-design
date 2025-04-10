@@ -14,7 +14,7 @@ onMounted(() => {
 <template>
   <div class="relative w-full h-screen">
     <LayoutsIndexPicture />
-    <LayoutsOfferProduct />
+    <LayoutsListProduct />
     <LayoutsFooter v-if="isContentLoaded" />
   </div>
 </template>

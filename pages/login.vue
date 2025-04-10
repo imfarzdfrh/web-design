@@ -28,7 +28,7 @@ const handleGoogleLogin = () => {
       <img
         src="/assets/images/login-pic.jpg"
         class="object-cover w-full h-full"
-      />
+      >
     </div>
 
     <!-- Right side (Login Form) -->
@@ -74,13 +74,9 @@ const handleGoogleLogin = () => {
             required
           />
         </div>
-        <div class="flex items-center justify-between px-12">
-          <button
-            type="submit"
-            class="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </button>
+        <div class="flex items-center justify-center px-10">
+          <UiButtonBaseButton color="primary">Login</UiButtonBaseButton>
+
         </div>
       </form>
       <div class="px-12 mt-6 text-center">

@@ -3,7 +3,6 @@ import { ref, onMounted } from "vue";
 export const useTheme = () => {
   const isDarkMode = ref(false);
 
-  // بررسی وضعیت ذخیره شده در localStorage
   const loadTheme = () => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
@@ -15,7 +14,6 @@ export const useTheme = () => {
     }
   };
 
-  // تغییر حالت دارک/لایت
   const toggleTheme = () => {
     isDarkMode.value = !isDarkMode.value;
     if (isDarkMode.value) {
@@ -28,7 +26,7 @@ export const useTheme = () => {
   };
 
   onMounted(() => {
-    loadTheme(); // بارگذاری وضعیت ذخیره شده
+    loadTheme();
   });
 
   return { isDarkMode, toggleTheme };

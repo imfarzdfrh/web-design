@@ -2,21 +2,38 @@
 import { ref } from 'vue'
 
 const isOpen = ref(false)
+const isProductOpen = ref(false) 
+// const isUserMenuOpen = ref(false) 
 
 const links = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' }
+  {
+    label: 'Product',
+    to: '#',
+    submenu: [
+      { label: 'Feature 1', to: '/' },
+      { label: 'Feature 2', to: '/' },
+      { label: 'Feature 3', to: '/' }
+    ]
+  },
+  { label: 'About', to: '/' },
+  { label: 'Contact', to: '/' }
 ]
 
 function toggleMenu() {
   isOpen.value = !isOpen.value
 }
+
+function toggleProductMenu() {
+  isProductOpen.value = !isProductOpen.value
+}
+
+// function toggleUserMenu() {
+//   isUserMenuOpen.value = !isUserMenuOpen.value
+// }
 </script>
 
 <template>
-  <nav
-    class="px-6 py-4 transition-all bg-white shadow-md dark:bg-darkBackground navbar dark:text-darkText">
+  <nav class="px-6 py-4 transition-all bg-white shadow-md dark:bg-darkBackground navbar dark:text-darkText">
     <div class="container flex items-center justify-between mx-auto">
       <!-- Left side: Logo + Nav Links -->
       <div class="flex items-center space-x-7">
@@ -25,14 +42,52 @@ function toggleMenu() {
           MySite
         </NuxtLink>
 
-        <!-- Nav Links (Home, About, Contact) -->
+        <!-- Nav Links (Home, About, Contact, Product with submenu) -->
         <ul class="items-center hidden space-x-6 md:flex">
-          <li v-for="link in links" :key="link.to">
+          <li v-for="link in links" :key="link.to" class="relative">
             <NuxtLink
+              v-if="!link.submenu"
               :to="link.to"
               class="text-gray-800 transition dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400">
               {{ link.label }}
             </NuxtLink>
+            <div v-else class="relative">
+              <!-- Product Dropdown Button -->
+              <button
+                @click="toggleProductMenu"
+                class="flex items-center space-x-2 text-gray-800 transition dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400">
+                <span>{{ link.label }}</span>
+                <!-- فلش کنار Product -->
+                <svg
+                  :class="{ 'transform rotate-180': isProductOpen }"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <!-- Submenu (Dropdown) -->
+              <div
+                v-show="isProductOpen"
+                class="absolute left-0 mt-2 w-48 bg-white dark:bg-darkBackground rounded-md shadow-lg overflow-hidden transition-all transform scale-95 origin-top scale-100"
+                @click.stop>
+                <ul class="space-y-2 py-2">
+                  <li v-for="subLink in link.submenu" :key="subLink.to">
+                    <NuxtLink
+                      :to="subLink.to"
+                      class="block text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2">
+                      {{ subLink.label }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -40,24 +95,48 @@ function toggleMenu() {
       <!-- Right side: ThemeSwitcher + Buttons -->
       <ul class="items-center hidden space-x-6 md:flex">
         <li>
-          <UiBaseButton color="primary">Sign in</UiBaseButton>
+          <NuxtLink to="/login">
+            <UiBaseButton color="primary">Sign in</UiBaseButton>
+          </NuxtLink>
         </li>
         <li><uiThemeSwitcher /></li>
+        
+        <!-- User Menu -->
+        <!-- <li class="relative">
+          <button @click="toggleUserMenu" class="relative flex items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="absolute -inset-1.5" />
+            <span class="sr-only">Open user menu</span>
+            <img class="size-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+          </button>
+
+          <transition name="fade">
+            <div v-if="isUserMenuOpen" class="absolute right-0 z-10 mt-2 w-48 bg-white dark:bg-darkBackground rounded-md shadow-lg py-1 ring-1 ring-black/5 focus:outline-hidden">
+              <ul>
+                <li>
+                  <NuxtLink to="/profile" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100">
+                    Your Profile
+                  </NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/settings" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100">
+                    Settings
+                  </NuxtLink>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100">
+                    Sign out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </transition>
+        </li> -->
       </ul>
 
       <!-- Mobile menu toggle button -->
       <button class="text-gray-700 md:hidden dark:text-gray-300" @click="toggleMenu">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
@@ -75,11 +154,16 @@ function toggleMenu() {
 
       <UiThemeSwitcher />
 
-      <button
-        class="block w-full text-sm font-medium text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-        Login
-      </button>
-      <UiButtonBaseButton color="primary">Sign up</UiButtonBaseButton>
+      <UiBaseButton color="primary" size="small">Sign up</UiBaseButton>
     </div>
   </nav>
 </template>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -21,7 +21,7 @@ const props = defineProps({
     required: true
   },
   price: {
-    type: Number, 
+    type: String, 
     required: true
   }
 })

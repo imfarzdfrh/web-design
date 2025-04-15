@@ -6,7 +6,7 @@ const products = [
     image: '/temp/pic/chatgpt.png',
     title: 'ChatGpt',
     description: 'Ai Chat Smart',
-    price: 700000
+    price: "30$"
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ const products = [
     image: '/temp/pic/deepseek.png',
     title: 'DeepSeek',
     description: 'Ai Chat Smart',
-    price: 700000
+    price: "40$"
   },
   {
     id: 3,
@@ -22,7 +22,7 @@ const products = [
     image: '/temp/pic/grok.png',
     title: 'Grok',
     description: 'Ai Chat Smart',
-    price: 700000
+    price: "100$"
   },
   {
     id: 4,
@@ -30,7 +30,7 @@ const products = [
     image: '/temp/pic/runaway.png',
     title: 'Runaway',
     description: 'Ai Create Video',
-    price: 700000
+    price: "99$"
   },
   {
     id: 5,
@@ -38,7 +38,7 @@ const products = [
     image: '/temp/pic/claude.png',
     title: 'Claude',
     description: 'Ai Create Video',
-    price: 700000
+    price: "70$"
   },
  
 ]
@@ -52,7 +52,7 @@ const products = [
     </div>
 
       <div class="flex flex-wrap justify-center py-12 space-x-6">
-        <UiCardProduct
+        <UiProductCard
           v-for="item in products"
           :id="item.id"
           :key="item.id"
@@ -68,16 +68,4 @@ const products = [
 
 
 
-<style>
-.hover\:scale-105:hover {
-  transform: scale(1.1);
-}
 
-.transition-transform {
-  transition: transform 0.2s ease-in-out;
-}
-
-.transition-colors {
-  transition: background-color 0.5s ease;
-}
-</style>

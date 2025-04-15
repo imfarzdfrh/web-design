@@ -39,17 +39,18 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="flex h-screen login-page relative">
+  <div class="relative flex h-screen login-page">
+    <!-- Alert notification -->
     <transition
-      enter-active-class="transition ease-out duration-300"
+      enter-active-class="transition duration-300 ease-out"
       enter-from-class="-translate-y-10 opacity-0"
       enter-to-class="translate-y-0 opacity-100"
-      leave-active-class="transition ease-in duration-300"
+      leave-active-class="transition duration-300 ease-in"
       leave-from-class="translate-y-0 opacity-100"
       leave-to-class="-translate-y-10 opacity-0">
       <div
         v-if="showAlert"
-        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-semibold">
+        class="fixed z-50 px-6 py-3 text-sm font-semibold text-white -translate-x-1/2 bg-red-500 rounded-lg shadow-lg top-5 left-1/2">
         Email or Password is incorrect!
       </div>
     </transition>
@@ -70,12 +71,35 @@ const handleLogin = async () => {
       </h2>
 
       <form @submit.prevent="handleLogin" class="space-y-4">
-        <UiBaseInput />
-        <UiBaseInput
-          type="password"
-          v-model="password"
-          label="Paswword"
-          placeholder="Enter your Password" />
+        <div class="py-2 px-60">
+          <label
+            for="email"
+            class="block pb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            class="w-full px-4 py-2 border border-gray-400 rounded-md dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+            placeholder="Enter your email"
+            required >
+        </div>
+
+        <div class="py-2 px-60">
+          <label
+            for="password"
+            class="block pb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            class="w-full px-4 py-2 border border-gray-400 rounded-md dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+            placeholder="Enter your password"
+            required />
+        </div>
 
         <div class="flex items-center justify-center">
           <UiBaseButton
@@ -85,7 +109,7 @@ const handleLogin = async () => {
             :disabled="isLoading">
             <svg
               v-if="isLoading"
-              class="w-5 h-5 animate-spin text-white"
+              class="w-5 h-5 text-white animate-spin"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24">

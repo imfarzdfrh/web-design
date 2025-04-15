@@ -50,7 +50,7 @@ const links = [
 <template>
   <nav
     class="px-6 py-4 transition-all bg-white shadow-md dark:bg-darkBackground navbar dark:text-darkText">
-    <div class="container flex items-center justify-between mx-auto relative">
+    <div class="container relative flex items-center justify-between mx-auto">
       <!-- Left side: Logo + Nav Links -->
       <div class="flex items-center space-x-7">
         <!-- Logo -->
@@ -91,13 +91,13 @@ const links = [
               <!-- Submenu (Dropdown) -->
               <div
                 v-show="isProductOpen"
-                class="absolute left-0 mt-2 w-48 bg-white dark:bg-darkBackground rounded-md shadow-lg overflow-hidden transition-all transform scale-95 origin-top scale-100"
+                class="absolute left-0 w-48 mt-2 overflow-hidden transition-all origin-top transform scale-95 scale-100 bg-white rounded-md shadow-lg dark:bg-darkBackground"
                 @click.stop>
-                <ul class="space-y-2 py-2">
+                <ul class="py-2 space-y-2">
                   <li v-for="subLink in link.submenu" :key="subLink.to">
                     <NuxtLink
                       :to="subLink.to"
-                      class="block text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2">
+                      class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
                       {{ subLink.label }}
                     </NuxtLink>
                   </li>
@@ -119,10 +119,10 @@ const links = [
         <li v-else class="relative">
           <button
             @click="toggleUserMenu"
-            class="relative flex items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            class="relative flex items-center text-sm bg-gray-800 rounded-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <span class="sr-only">Open user menu</span>
             <img
-              class="size-8 rounded-full"
+              class="rounded-full size-8"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="" />
           </button>
@@ -130,7 +130,7 @@ const links = [
           <transition name="fade">
             <div
               v-if="isUserMenuOpen"
-              class="absolute right-0 z-10 mt-2 w-48 bg-white dark:bg-darkBackground rounded-md shadow-lg py-1 ring-1 ring-black/5 focus:outline-hidden">
+              class="absolute right-0 z-10 w-48 py-1 mt-2 bg-white rounded-md shadow-lg dark:bg-darkBackground ring-1 ring-black/5 focus:outline-hidden">
               <ul>
                 <li>
                   <NuxtLink
@@ -149,7 +149,7 @@ const links = [
                 <li>
                   <button
                     @click="handleLogout"
-                    class="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100">
+                    class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-200 hover:bg-gray-100">
                     Sign out
                   </button>
                 </li>
@@ -157,9 +157,11 @@ const links = [
             </div>
           </transition>
         </li>
+        <UiThemeSwitcher />
       </ul>
 
       <!-- Mobile menu toggle button -->
+
       <button class="text-gray-700 md:hidden dark:text-gray-300" @click="toggleMenu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -175,8 +177,12 @@ const links = [
         </svg>
       </button>
     </div>
+
     <!-- Mobile Nav -->
-    <div v-if="isOpen" class="px-4 mt-4 space-y-4 md:hidden">
+
+    <div v-if="isOpen" class="px-4 mt-10 space-y-4 md:hidden">
+      <UiThemeSwitcher class="" />
+     
       <NuxtLink
         v-for="link in links"
         :key="link.to"
@@ -185,12 +191,10 @@ const links = [
         @click="toggleMenu">
         {{ link.label }}
       </NuxtLink>
-
-      <UiThemeSwitcher />
-
-      <UiBaseButton color="primary" size="small">Sign up</UiBaseButton>
+      <NuxtLink to="/login">
+        <UiBaseButton color="primary" class="my-5">Sign in</UiBaseButton>
+      </NuxtLink>
     </div>
-    <uiThemeSwitcher class="absolute right-0 top-3 mx-4" />
   </nav>
 </template>
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CardProduct from '@/components/ui/ProductCard.vue'
 const products = [
   {
     id: 1,
@@ -26,7 +25,7 @@ const products = [
     price: 700000
   },
   {
-    id: 1,
+    id: 4,
     name: 'runaway',
     image: '/temp/pic/runaway.png',
     title: 'Runaway',
@@ -34,7 +33,7 @@ const products = [
     price: 700000
   },
   {
-    id: 1,
+    id: 5,
     name: 'claude',
     image: '/temp/pic/claude.png',
     title: 'Claude',
@@ -49,12 +48,13 @@ const products = [
 <template>
   <div class="dark:bg-darkBackground dark:text-darkText">
     <div class="pt-10">
-      <h1 class="font-bold text-3xl px-40">Top Sellers</h1>
+      <h1 class="px-40 text-3xl font-bold">Top Sellers</h1>
     </div>
 
       <div class="flex flex-wrap justify-center py-12 space-x-6">
-        <CardProduct
+        <UiCardProduct
           v-for="item in products"
+          :id="item.id"
           :key="item.id"
           :name="item.name"
           :src="item.image"

@@ -1,0 +1,53 @@
+<script setup lang="ts">
+import { defineProps, defineEmits, ref } from 'vue';
+
+const props = defineProps({
+  id: {
+    type: String,
+    default: '1',
+  },
+  type: {
+    type: String,
+    default: 'email',
+  },
+  label: {
+    type: String,
+    default: 'Email Address',
+  },
+  placeholder: {
+    type: String,
+    default: 'Enter your email',
+  },
+  modelValue: {
+    type: String,
+    default: '',
+  },
+});
+
+const emit = defineEmits();
+
+const email = ref(props.modelValue);
+
+const updateEmail = () => {
+  emit('update:modelValue', email.value);
+};
+</script>
+
+<template>
+  <div class="px-60 py-2">
+    <label :for="id" class="block pb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+      {{ label }}
+    </label>
+    <input
+      :type="type"
+      :id="id"
+      v-bind="$attrs"
+      v-on="$listeners"
+      v-model="email"
+      @input="updateEmail"
+      :placeholder="placeholder"
+      class="w-full px-4 py-2 border border-gray-400 rounded-md dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+      required
+    />
+  </div>
+</template>

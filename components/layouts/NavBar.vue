@@ -195,7 +195,6 @@ const links = [
 </template>
 
 <style scoped>
-/* Optional: Add transitions for smooth opening/closing of dropdown */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

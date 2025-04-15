@@ -1,6 +1,6 @@
 <template>
   <img
-    src="/assets/images/background-main-page-2.png"
+    src="/assets/images/background-main-page.png"
     class="absolute inset-0 object-cover w-full h-screen" />
   <div
     class="relative flex flex-col items-start justify-start py-48 h-screen px-12 text-white bg-black bg-opacity-40 dark:bg-opacity-55">

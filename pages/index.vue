@@ -4,7 +4,6 @@ import { ref, onMounted } from 'vue';
 const isContentLoaded = ref(false);
 
 onMounted(() => {
-  // Simulate a delay for content loading
   setTimeout(() => {
     isContentLoaded.value = true;
   }, 100); 
@@ -13,7 +12,7 @@ onMounted(() => {
 
 <template>
   <div class="relative w-full h-screen">
-    <LayoutsIndexPicture />
+    <LayoutsMainBanner />
     <LayoutsListProduct />
     <LayoutsFooter v-if="isContentLoaded" />
   </div>

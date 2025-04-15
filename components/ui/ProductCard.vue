@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useCartStore } from '@/stores/cart'
-const cart = useCartStore()
 
 const props = defineProps({
   id: {
@@ -29,13 +27,6 @@ const props = defineProps({
   }
 })
 
-const addToCart = () => {
-  cart.addToCart({
-    id: props.id,
-    name: props.name,
-    price: props.price
-  })
-}
 </script>
 
 <template>
@@ -47,7 +38,7 @@ const addToCart = () => {
       <p class="mb-4 text-gray-600">{{ description }}</p>
       <div class="flex items-center justify-between">
         <span class="text-lg font-semibold text-gray-800">{{ price }}</span>
-        <UiBaseButton  @click="addToCart" color="primary">buy</UiBaseButton>
+        <UiBaseButton color="primary">buy</UiBaseButton>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardProduct from '@/components/ui/CardProduct.vue'
+import CardProduct from '@/components/ui/ProductCard.vue'
 const products = [
   {
     id: 1,
@@ -69,7 +69,6 @@ const products = [
 
 
 <style>
-/* Adding hover and animation effects */
 .hover\:scale-105:hover {
   transform: scale(1.1);
 }

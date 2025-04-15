@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col w-full h-screen mx-auto dark:bg-darkBackground dark:text-darkText">
+    <div class="flex flex-col w-full h-screen mx-auto dark:bg-darkBackground dark:text-darkText bg-lightBackground">
       <h1 class="mx-20 text-4xl font-bold p-14">Hot Seller</h1>
       <div class="relative w-full max-w-4xl mx-auto transition-transform transform bg-gray-300 shadow-md duration-600 opacity-90 hover:opacity-100 rounded-xl h-80 hover:scale-105">
         <img src="/temp/pic/banner3.png" alt="Image 1" class="object-cover w-full h-full rounded-xl">

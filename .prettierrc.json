@@ -7,5 +7,6 @@
   "trailingComma": "none",
   "useTabs": false,
   "arrowParens": "avoid",
-  "bracketSameLine": true
+  "bracketSameLine": true,
+  "editor.formatOnSave": false
 }

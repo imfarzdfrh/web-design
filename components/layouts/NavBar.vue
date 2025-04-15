@@ -49,7 +49,7 @@ const links = [
 
 <template>
   <nav
-    class="px-6 py-4 transition-all bg-white shadow-md dark:bg-darkBackground navbar dark:text-darkText">
+    class="px-6 py-4 transition-all shadow-md dark:bg-darkBackground navbar dark:text-darkText bg-lightBackground">
     <div class="container relative flex items-center justify-between mx-auto">
       <!-- Left side: Logo + Nav Links -->
       <div class="flex items-center space-x-7">

@@ -9,10 +9,10 @@ export default {
         danger: '#e71d36',
         success: '#38b000',
         warning: '#ffba08',
-        darkBackground: '#0d1b2a',
+        darkBackground: '#121420',
         lightBackground: '#f8f9fa',
-        darkText: '#fdfffc',
-        lightText: '#212529'
+        darkText: '#212529',
+        lightText: '#fdfffc'
       }
     },
     backgroundImage: {

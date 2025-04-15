@@ -46,7 +46,7 @@ const products = [
 </script>
 
 <template>
-  <div class="dark:bg-darkBackground dark:text-darkText">
+  <div class="dark:bg-darkBackground bg-lightBackground dark:text-darkText">
     <div class="pt-10">
       <h1 class="px-40 text-3xl font-bold">Top Sellers</h1>
     </div>

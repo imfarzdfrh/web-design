@@ -68,7 +68,7 @@ const handleLogin = async () => {
 
     <!-- Left side (Image) -->
     <div class="hidden lg:w-1/2 lg:block">
-      <img src="/assets/images/login-page.jpg">
+      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover">
     </div>
 
     <!-- Right side (Login Form) -->

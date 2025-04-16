@@ -46,9 +46,9 @@ const products = [
 </script>
 
 <template>
-  <div class="dark:bg-darkBackground bg-lightBackground dark:text-darkText">
-    <div class="pt-10">
-      <h1 class="px-40 text-3xl font-bold">Top Sellers</h1>
+  <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
+    <div class="container mx-auto">
+      <h2 class="text-2xl font-bold mb-8">Top Sellers</h2>
     </div>
 
       <div class="flex flex-wrap justify-center py-12 space-x-6">

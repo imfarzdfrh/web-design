@@ -3,16 +3,13 @@ import { ref, onMounted } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 import { storeToRefs } from 'pinia'
 
-// auth store
 const auth = useAuthStore()
 const { isLoggedIn } = storeToRefs(auth)
 
-// fetch user after reload
 onMounted(() => {
   auth.fetchUser()
 })
 
-// menus
 const isOpen = ref(false)
 const isProductOpen = ref(false)
 const isUserMenuOpen = ref(false)
@@ -22,6 +19,7 @@ function toggleMenu() {
 }
 function toggleProductMenu() {
   isProductOpen.value = !isProductOpen.value
+  console.log('isProductOpen:', isProductOpen.value)
 }
 function toggleUserMenu() {
   isUserMenuOpen.value = !isUserMenuOpen.value
@@ -31,15 +29,14 @@ function handleLogout() {
   isUserMenuOpen.value = false
 }
 
-// links
 const links = [
   {
-    label: 'Product',
+    label: 'Category',
     to: '#',
     submenu: [
-      { label: 'Feature 1', to: '/' },
-      { label: 'Feature 2', to: '/' },
-      { label: 'Feature 3', to: '/' }
+      { label: 'Chat bot', to: '/' },
+      { label: 'Image generator', to: '/' },
+      { label: 'Video generator', to: '/' }
     ]
   },
   { label: 'About', to: '/' },
@@ -51,14 +48,13 @@ const links = [
   <nav
     class="px-6 py-4 transition-all shadow-md dark:bg-darkBackground navbar dark:text-darkText bg-lightBackground">
     <div class="container relative flex items-center justify-between mx-auto">
-      <!-- Left side: Logo + Nav Links -->
       <div class="flex items-center space-x-7">
         <!-- Logo -->
         <NuxtLink to="/" class="text-xl font-bold text-gray-900 dark:text-gray-200">
           MySite
         </NuxtLink>
 
-        <!-- Nav Links (Home, About, Contact, Product with submenu) -->
+        <!-- Nav Links -->
         <ul class="items-center hidden space-x-6 md:flex">
           <li v-for="link in links" :key="link.to" class="relative">
             <NuxtLink
@@ -71,9 +67,8 @@ const links = [
               <!-- Product Dropdown Button -->
               <button
                 @click="toggleProductMenu"
-                class="flex items-center space-x-2 text-gray-800 transition dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400">
+                class="flex items-center space-x-2 text-darkText transition dark:text-lightText hover:text-darkText dark:hover:text-gray-400">
                 <span>{{ link.label }}</span>
-                <!-- فلش کنار Product -->
                 <svg
                   :class="{ 'transform rotate-180': isProductOpen }"
                   xmlns="http://www.w3.org/2000/svg"
@@ -88,21 +83,24 @@ const links = [
                     d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+
               <!-- Submenu (Dropdown) -->
-              <div
-                v-show="isProductOpen"
-                class="absolute left-0 w-48 mt-2 overflow-hidden transition-all origin-top transform scale-95 scale-100 bg-white rounded-md shadow-lg dark:bg-darkBackground"
-                @click.stop>
-                <ul class="py-2 space-y-2">
-                  <li v-for="subLink in link.submenu" :key="subLink.to">
-                    <NuxtLink
-                      :to="subLink.to"
-                      class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
-                      {{ subLink.label }}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </div>
+              <transition name="dropdown">
+                <div
+                  v-if="isProductOpen"
+                  class="absolute left-0 w-48 mt-2 bg-white rounded-md shadow-lg dark:bg-darkBackground ring-1 ring-black/5 focus:outline-hidden z-10"
+                  @click.stop>
+                  <ul class="py-2 space-y-2">
+                    <li v-for="subLink in link.submenu" :key="subLink.to">
+                      <NuxtLink
+                        :to="subLink.to"
+                        class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        {{ subLink.label }}
+                      </NuxtLink>
+                    </li>
+                  </ul>
+                </div>
+              </transition>
             </div>
           </li>
         </ul>
@@ -161,7 +159,6 @@ const links = [
       </ul>
 
       <!-- Mobile menu toggle button -->
-
       <button class="text-gray-700 md:hidden dark:text-gray-300" @click="toggleMenu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -179,10 +176,9 @@ const links = [
     </div>
 
     <!-- Mobile Nav -->
-
     <div v-if="isOpen" class="px-4 mt-10 space-y-4 md:hidden">
       <UiThemeSwitcher class="" />
-     
+
       <NuxtLink
         v-for="link in links"
         :key="link.to"
@@ -201,10 +197,22 @@ const links = [
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  transform: scale(0.95);
+}
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-enter,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
 }
 </style>

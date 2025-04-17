@@ -10,8 +10,30 @@ definePageMeta({
 const product = ref({
   name: 'AI Software',
   shortDescription: 'This is an advanced software for data analysis.',
-  longDescription:
-    'This software includes various features to help with data analysis and intelligent predictions...',
+  longDescription: `
+    <h2 class="font-bold text-2xl py-10">ChatGPT - Features, Benefits, and Subscription Types</h2>
+    <p>Welcome to our AI-powered ChatGPT account store! Here, you can purchase access to ChatGPT’s advanced capabilities, whether for personal, professional, or academic use. Below is a complete breakdown of the features and functionalities of ChatGPT, as well as an explanation of the different types of accounts we offer: Shared Accounts and Dedicated Accounts.</p>
+    
+    <h3>Key Features of ChatGPT</h3>
+    <ul>
+      <li class="font-bold text-2xl py-10"><strong>Advanced Language Understanding</strong> 
+      <li>ChatGPT can comprehend and generate text in a natural, human-like manner.</li>
+      <li class="font-bold text-2xl py-10"><strong>Task Automation:</strong> Automate repetitive tasks such as answering emails, writing reports, summarizing documents, and more.</li>
+      <li class="font-bold text-2xl py-10"><strong>Creative Content Generation:</strong> ChatGPT can assist with writing blog posts, stories, essays, poetry, and more.</li>
+      <li class="font-bold text-2xl py-10"><strong>Learning and Research:</strong> Perfect for students, researchers, and professionals, ChatGPT can help you explore topics and answer complex queries.</li>
+      <li class="font-bold text-2xl py-10"><strong>Multilingual Support:</strong> ChatGPT supports multiple languages, including English, Spanish, French, German, and more.</li>
+      <li class="font-bold text-2xl py-10"><strong>Personalization:</strong> ChatGPT learns your preferences and adapts over time.</li>
+      <li class="font-bold text-2xl py-10"><strong>Code Assistance:</strong> Developers can use ChatGPT to write and debug code.</li>
+      <li class="font-bold text-2xl py-10"><strong>24/7 Availability:</strong> Always available to assist you at any time.</li>
+    </ul>
+
+    <h3>Subscription Types</h3>
+    <p><strong>Shared Account:</strong> A shared account allows multiple users to access the same ChatGPT account. It’s cost-effective and ideal for casual users or small groups.</p>
+    <p><strong>Dedicated Account:</strong> A dedicated account offers exclusive, private access to ChatGPT, perfect for businesses or individuals needing secure, unlimited, and customized access.</p>
+
+    <h3>Why Choose ChatGPT?</h3>
+    <p>Whether you're a student, business owner, or developer, a ChatGPT account can significantly boost your productivity and creativity. Choose the plan that fits your needs and unlock the power of AI!</p>
+  `,
   price: 99,
   originalPrice: 129,
   discount: true,
@@ -39,7 +61,8 @@ const addToCart = () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-full bg-lightBackground dark:bg-darkBackground w-full text-darkText dark:text-lightText ">
+  <div
+    class="flex flex-col h-full bg-lightBackground dark:bg-darkBackground w-full text-darkText dark:text-lightText p-10">
     <div class="max-w-7xl mx-auto px-4 py-8">
       <!-- Product Image -->
       <div class="flex flex-col lg:flex-row">
@@ -47,7 +70,7 @@ const addToCart = () => {
           <img
             src="/temp/pic/chatgpt-banner.jpg"
             alt="Product Image"
-            class="w-full h-auto rounded-lg shadow-lg" />
+            class="w-full h-auto rounded-lg shadow-2xl" />
         </div>
 
         <!-- Product Info -->
@@ -105,7 +128,7 @@ const addToCart = () => {
       <!-- More Details -->
       <div class="mt-8">
         <h2 class="text-2xl font-bold">More Details</h2>
-        <p class="mt-2">{{ product.longDescription }}</p>
+        <div v-html="product.longDescription"></div>
       </div>
 
       <!-- Reviews -->
@@ -117,8 +140,8 @@ const addToCart = () => {
             src="/temp/pic/profile-fake.jpg"
             alt="Profile Image"
             class="w-12 h-12 rounded-full mr-4" />
-          <div>
-            <p class="font-semibold">{{ review.username }}:</p>
+          <div class="px-5 py-3">
+            <p class="font-semibold py-5">{{ review.username }}:</p>
             <p>{{ review.comment }}</p>
           </div>
         </div>
@@ -127,6 +150,4 @@ const addToCart = () => {
   </div>
 </template>
 
-<style scoped>
-/* Custom styles for the page if needed */
-</style>
+<style scoped></style>

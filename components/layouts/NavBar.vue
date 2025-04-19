@@ -13,6 +13,7 @@ onMounted(() => {
 const isOpen = ref(false)
 const isProductOpen = ref(false)
 const isUserMenuOpen = ref(false)
+const searchQuery = ref('') // This will hold the search input
 
 function toggleMenu() {
   isOpen.value = !isOpen.value
@@ -42,6 +43,14 @@ const links = [
   { label: 'About', to: '/' },
   { label: 'Contact', to: '/' }
 ]
+
+// Handle search submission (if applicable)
+function handleSearch() {
+  if (searchQuery.value.trim() !== '') {
+    console.log('Searching for:', searchQuery.value)
+    // You can handle search logic here (like redirecting to a search results page)
+  }
+}
 </script>
 
 <template>
@@ -106,6 +115,33 @@ const links = [
         </ul>
       </div>
 
+      <!-- Search Bar (On the right side) -->
+      <div class="relative hidden md:block">
+        <!-- Search Input and Icon -->
+        <div class="flex items-center">
+          <!-- Search Icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gray-500 absolute left-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-4.35-4.35M10 16a6 6 0 100-12 6 6 0 000 12z" />
+          </svg>
+          <!-- Search Input -->
+          <input
+            v-model="searchQuery"
+            @input="handleSearch"
+            type="text"
+            placeholder="Search"
+            class="w-[450px] px-10 py-2 border border-gray-500 shadow-md rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-700 dark:bg-darkBackground dark:border-lightBackground/30 dark:text-lightText" >
+        </div>
+      </div>
+
       <!-- Right side -->
       <ul class="items-center hidden space-x-5 md:flex">
         <li v-if="!isLoggedIn">
@@ -155,6 +191,14 @@ const links = [
             </div>
           </transition>
         </li>
+        <li>
+          <NuxtLink to="/cart">
+            <UiBaseIcon
+              name="cart"
+              size="30"
+              class="px-5 fill-current text-black dark:text-white" />
+          </NuxtLink>
+        </li>
         <UiThemeSwitcher />
       </ul>
 
@@ -178,7 +222,6 @@ const links = [
     <!-- Mobile Nav -->
     <div v-if="isOpen" class="px-4 mt-10 space-y-4 md:hidden">
       <UiThemeSwitcher class="" />
-
       <NuxtLink
         v-for="link in links"
         :key="link.to"

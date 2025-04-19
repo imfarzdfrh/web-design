@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         primary: '#15616d',
+        secondry: '#d1495b',
         danger: '#e71d36',
         success: '#38b000',
         warning: '#ffba08',

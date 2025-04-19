@@ -49,15 +49,10 @@ const setSize = (svgElement: SVGElement) => {
   svgElement.setAttribute('height', props.size)
 }
 
-const setColor = (svgElement: SVGElement, svgContent: string) => {
-  if (svgContent.includes('fill="none"')) {
-    svgElement.setAttribute('stroke', props.color)
-  } else if (props.color.startsWith('#')) {
-    svgElement.setAttribute('fill', props.color)
-  } else if (props.color.startsWith('fill-')) {
-    svgElement.removeAttribute('class')
-    svgElement.classList.add(props.color)
-  }
+const setColor = (svgElement: SVGElement) => {
+  // اجازه بده که CSS تعیین‌کننده باشه
+  svgElement.setAttribute('fill', 'currentColor')
+  svgElement.classList.add('fill-current')
 }
 
 watch(

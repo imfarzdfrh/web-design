@@ -2,35 +2,17 @@
 import { defineProps } from 'vue'
 
 const props = defineProps({
-  id: {
-    type: Number,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  src: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: String,
-    required: true
-  }
+  id: { type: Number, required: true },
+  name: { type: String, required: true },
+  src: { type: String, required: true },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: String, required: true }
 })
 </script>
 
 <template>
-  <NuxtLink to="/product">
+  <NuxtLink :to="{ name: 'product-id', params: { id } }">
     <div
       class="overflow-hidden transition-transform duration-300 ease-in-out transform bg-white dark:bg-gray-400/40 rounded-lg shadow-lg w-60 hover:scale-105">
       <img :src="src" alt="Product 1" class="object-cover p-5" />

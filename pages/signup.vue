@@ -3,38 +3,36 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '~/stores/auth'
 
-const isLoading = ref(false)
-
-onMounted(() => {
-  const dropdownButton = document.querySelector('button')
-  const dropdownMenu = document.querySelector('.absolute')
-
-  if (dropdownButton && dropdownMenu) {
-    dropdownButton.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('hidden')
-    })
-  }
-})
-
 definePageMeta({
   layout: 'blank',
-  name: 'login',
-  path: '/login'
+  name: 'signup',
+  path: '/signup'
 })
+
+const isLoading = ref(false)
 
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const showAlert = ref(false)
 
 const auth = useAuthStore()
 const router = useRouter()
 
-const handleLogin = async () => {
+const handleRegister = async () => {
+  if (password.value !== confirmPassword.value) {
+    showAlert.value = true
+    setTimeout(() => {
+      showAlert.value = false
+    }, 3000)
+    return
+  }
+
   isLoading.value = true
 
   await new Promise(resolve => setTimeout(resolve, 1700))
 
-  const success = await auth.login(email.value, password.value)
+  const success = await auth.register(email.value, password.value)
 
   isLoading.value = false
 
@@ -50,7 +48,7 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="relative flex h-screen login-page">
+  <div class="relative flex h-screen register-page">
     <!-- Alert notification -->
     <transition
       enter-active-class="transition duration-300 ease-out"
@@ -62,32 +60,31 @@ const handleLogin = async () => {
       <div
         v-if="showAlert"
         class="fixed z-50 px-6 py-3 text-sm font-semibold text-lightText -translate-x-1/2 bg-danger rounded-lg shadow-lg top-5 left-1/2">
-        Email or Password is incorrect!
+        Passwords do not match or there was an error during registration.
       </div>
     </transition>
 
     <!-- Left side (Image) -->
     <div class="hidden lg:w-1/2 lg:block">
-      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover">
+      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover" />
     </div>
 
-    <!-- Right side (Login Form) -->
-    <div
-      class="flex flex-col justify-center bg-lightBackground lg:w-1/2 dark:bg-darkBackground">
-      
+    <!-- Right side (Register Form) -->
+    <div class="flex flex-col justify-center bg-lightBackground lg:w-1/2 dark:bg-darkBackground">
       <!-- Logo and Language Dropdown positioned at the top -->
-      <div
-        class="flex lg:w-1/2 justify-between items-center fixed top-0 right-0 p-9 z-10">
+      <div class="flex lg:w-1/2 justify-between items-center fixed top-0 right-0 p-9 z-10">
         <!-- Logo -->
         <a href="/" class="text-2xl font-bold dark:text-lightText px-5">My Site</a>
 
         <!-- Language Dropdown -->
-        <div class="relative border-2 border-gray-300 dark:border-gray-500 shadow-md px-6 py-3 rounded-full  ">
-          <button class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
+        <div
+          class="relative border-2 border-gray-300 dark:border-gray-500 shadow-md px-6 py-3 rounded-full">
+          <button
+            class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
             <img
               src="/assets/images/united-kingdom-flag.png"
               alt="English Flag"
-              class="w-5 h-5 mr-2" >
+              class="w-5 h-5 mr-2" />
             EN
             <svg
               class="w-4 h-4 ml-2"
@@ -116,25 +113,14 @@ const handleLogin = async () => {
 
       <!-- Content Below -->
       <div class="font-bold text-center text-8xl mt-24">
-        <h2 class="dark:text-white">Hi there!</h2>
+        <h2 class="dark:text-white">Join Us!</h2>
       </div>
 
       <p class="mt-1 mb-4 text-sm font-light text-center text-gray-800 dark:text-lightText">
-        Welcome to My Site , comunity to Dashboard
+        Create an account to get started with My Site
       </p>
-      <button
-        class="px-5 flex mx-auto mt-4 w-full max-w-xs py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-200">
-        <img src="/temp/pic/google.png" alt="Google Logo" class="w-5 h-5 mr-4" >
-        Log in with Google
-      </button>
 
-      <div class="flex items-center justify-center space-x-2 py-9 mx-60">
-        <hr class="flex-grow border-t border-gray-300 opacity-65" >
-        <span class="px-2 font-bold text-gray-500">or</span>
-        <hr class="flex-grow border-t border-gray-300 opacity-65" >
-      </div>
-
-      <form @submit.prevent="handleLogin" class="space-y-5">
+      <form @submit.prevent="handleRegister" class="space-y-5">
         <UiBaseInput
           type="email"
           id="email"
@@ -146,7 +132,14 @@ const handleLogin = async () => {
           type="password"
           id="password"
           v-model="password"
-          placeholder="Enter your Password"
+          placeholder="Enter your password"
+          required />
+
+        <UiBaseInput
+          type="password"
+          id="confirmPassword"
+          v-model="confirmPassword"
+          placeholder="Confirm your password"
           required />
 
         <div class="flex items-center justify-center mt-5">
@@ -173,7 +166,7 @@ const handleLogin = async () => {
                 fill="currentColor"
                 d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
             </svg>
-            <span v-if="!isLoading">Login</span>
+            <span v-if="!isLoading">Register</span>
             <span v-else>Loading...</span>
           </UiBaseButton>
         </div>
@@ -181,8 +174,8 @@ const handleLogin = async () => {
 
       <div class="mt-5 font-bold text-center">
         <p class="text-sm text-gray-700 dark:text-gray-300">
-          Don't have an account?
-          <a href="/signup" class="text-blue-500 dark:text-blue-400">Sign Up</a>
+          Already have an account?
+          <a href="/login" class="text-blue-500 dark:text-blue-400">Log In</a>
         </p>
       </div>
     </div>
@@ -191,7 +184,7 @@ const handleLogin = async () => {
 
 <style scoped>
 @media (max-width: 1024px) {
-  .login-page {
+  .register-page {
     flex-direction: column;
   }
 }

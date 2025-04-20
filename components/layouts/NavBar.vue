@@ -193,10 +193,7 @@ function handleSearch() {
         </li>
         <li>
           <NuxtLink to="/cart">
-            <UiBaseIcon
-              name="cart"
-              size="30"
-              class="px-5 fill-current text-black dark:text-white" />
+              <shopping-cartIcon class="h-6 w-6 fill-current dark:text-lightBackground" />
           </NuxtLink>
         </li>
         <UiThemeSwitcher />

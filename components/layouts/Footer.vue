@@ -32,10 +32,10 @@
 
         <!-- Social Media Links with SVG Icons -->
         <div class="flex mb-4 space-x-6 md:mb-0">
-          <UiBaseIcon name="facebook" size="24" color="#fff" />
-          <UiBaseIcon name="xtwitter" size="24" color="#fff" />
-          <UiBaseIcon name="linkedin" size="24" color="#fff" />
-          <UiBaseIcon name="instagram" size="24" color="#fff" />
+          <UiBaseIcon name="facebook" size="27" color="#fff" />
+          <UiBaseIcon name="xtwitter" size="27" color="#fff" />
+          <UiBaseIcon name="linkedin" size="27" color="#fff" />
+          <UiBaseIcon name="instagram" size="27" color="#fff" />
         </div>
       </div>
 

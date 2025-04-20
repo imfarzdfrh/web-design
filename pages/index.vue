@@ -11,8 +11,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-screen">
+  <div class="relative">
     <LayoutsMainBanner />
+    <LayoutsOverviewSection />
     <LayoutsMainProduct />
     <LayoutsCategory />
     <LayoutsListProduct />

@@ -21,7 +21,6 @@ const props = defineProps({
         <p class="mb-4 text-gray-600 dark:text-lightText">{{ description }}</p>
         <div class="flex items-center justify-between">
           <span class="text-lg font-semibold text-gray-800 dark:text-lightText">{{ price }}</span>
-          <!-- دکمه خرید داخل NuxtLink قرار گرفت -->
           <UiBaseButton color="primary">buy</UiBaseButton>
         </div>
       </div>

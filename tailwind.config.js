@@ -17,7 +17,8 @@ export default {
       }
     },
     backgroundImage: {
-      'gradient-primary': 'linear-gradient(to right, #005C97, #363795)'
+      'gradient-primary': 'linear-gradient(to right, #005C97, #363795)',
+      'gradiant-success': 'linear-gradient(to right , #11998e,#38ef7d)'
     }
   },
   plugins: []

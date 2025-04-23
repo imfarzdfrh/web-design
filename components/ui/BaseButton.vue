@@ -21,7 +21,7 @@ const buttonColorClass = computed(() => {
     case 'black':
       return 'bg-black text-white'
     case 'success':
-      return 'bg-success text-white'
+      return 'bg-gradiant-success text-black'
     case 'warning':
       return 'bg-warning text-black'
     default:
@@ -49,7 +49,7 @@ const buttonHoverClass = computed(() => {
 <template>
   <button
     :class="[
-      'inline-flex items-center justify-center rounded-lg text-white font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2',
+      'inline-flex items-center justify-center rounded-lg font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2',
       buttonColorClass,
       buttonSizeClass,
       buttonHoverClass

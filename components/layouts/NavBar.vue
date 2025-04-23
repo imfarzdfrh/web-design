@@ -40,15 +40,13 @@ const links = [
       { label: 'Video generator', to: '/' }
     ]
   },
-  { label: 'About', to: '/' },
-  { label: 'Contact', to: '/' }
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' }
 ]
 
-// Handle search submission (if applicable)
 function handleSearch() {
   if (searchQuery.value.trim() !== '') {
     console.log('Searching for:', searchQuery.value)
-    // You can handle search logic here (like redirecting to a search results page)
   }
 }
 </script>

@@ -134,12 +134,13 @@ const handleLogin = async () => {
         <hr class="flex-grow border-t border-gray-300 opacity-65" >
       </div>
 
-      <form @submit.prevent="handleLogin" class="space-y-5">
+      <form @submit.prevent="handleLogin">
         <UiBaseInput
           type="email"
           id="email"
           v-model="email"
           placeholder="Enter your email"
+          class="mx-auto"
           required />
 
         <UiBaseInput
@@ -147,6 +148,8 @@ const handleLogin = async () => {
           id="password"
           v-model="password"
           placeholder="Enter your Password"
+          class="mx-auto"
+
           required />
 
         <div class="flex items-center justify-center mt-5">

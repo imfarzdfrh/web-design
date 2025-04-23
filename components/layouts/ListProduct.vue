@@ -52,7 +52,7 @@ const products = [
     </div>
 
       <div class="flex flex-wrap justify-center py-12 space-x-6">
-        <UiProductCard
+        <UiMainCard
           v-for="item in products"
           :id="item.id"
           :key="item.id"

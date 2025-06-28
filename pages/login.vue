@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 
 const isLoading = ref(false)
@@ -68,26 +67,25 @@ const handleLogin = async () => {
 
     <!-- Left side (Image) -->
     <div class="hidden lg:w-1/2 lg:block">
-      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover">
+      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover" />
     </div>
 
     <!-- Right side (Login Form) -->
-    <div
-      class="flex flex-col justify-center bg-lightBackground lg:w-1/2 dark:bg-darkBackground">
-      
+    <div class="flex flex-col justify-center bg-lightBackground lg:w-1/2 dark:bg-darkBackground">
       <!-- Logo and Language Dropdown positioned at the top -->
-      <div
-        class="flex lg:w-1/2 justify-between items-center fixed top-0 right-0 p-9 z-10">
+      <div class="flex lg:w-1/2 justify-between items-center fixed top-0 right-0 p-9 z-10">
         <!-- Logo -->
         <a href="/" class="text-2xl font-bold dark:text-lightText px-5">My Site</a>
 
         <!-- Language Dropdown -->
-        <div class="relative border-2 border-gray-300 dark:border-gray-500 shadow-md px-6 py-3 rounded-full  ">
-          <button class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
+        <div
+          class="relative border-2 border-gray-300 dark:border-gray-500 shadow-md px-6 py-3 rounded-full">
+          <button
+            class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
             <img
               src="/assets/images/united-kingdom-flag.png"
               alt="English Flag"
-              class="w-5 h-5 mr-2" >
+              class="w-5 h-5 mr-2" />
             EN
             <svg
               class="w-4 h-4 ml-2"
@@ -124,14 +122,14 @@ const handleLogin = async () => {
       </p>
       <button
         class="px-5 flex mx-auto mt-4 w-full max-w-xs py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-200">
-        <img src="/temp/pic/google.png" alt="Google Logo" class="w-5 h-5 mr-4" >
+        <img src="/temp/pic/google.png" alt="Google Logo" class="w-5 h-5 mr-4" />
         Log in with Google
       </button>
 
       <div class="flex items-center justify-center space-x-2 py-9 mx-60">
-        <hr class="flex-grow border-t border-gray-300 opacity-65" >
+        <hr class="flex-grow border-t border-gray-300 opacity-65" />
         <span class="px-2 font-bold text-gray-500">or</span>
-        <hr class="flex-grow border-t border-gray-300 opacity-65" >
+        <hr class="flex-grow border-t border-gray-300 opacity-65" />
       </div>
 
       <form @submit.prevent="handleLogin">
@@ -149,7 +147,6 @@ const handleLogin = async () => {
           v-model="password"
           placeholder="Enter your Password"
           class="mx-auto"
-
           required />
 
         <div class="flex items-center justify-center mt-5">

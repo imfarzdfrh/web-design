@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { useCartStore } from '@/stores/cart'
 
 const props = defineProps({
   id: {
@@ -31,6 +32,17 @@ const props = defineProps({
     required: true
   }
 })
+
+const cart = useCartStore()
+
+function handleAddToCart() {
+  cart.addToCart({
+    id: props.id,
+    name: props.name,
+    price: parseFloat(props.price.replace('$', '')),
+    image: props.logo,
+  })
+}
 </script>
 
 <template>
@@ -52,7 +64,7 @@ const props = defineProps({
           <span class="text-lg font-semibold text-gray-800 dark:text-lightText">{{
             props.price
           }}</span>
-          <UiBaseButton color="primary">buy</UiBaseButton>
+          <UiBaseButton color="primary" @click.stop="handleAddToCart">Add to Cart</UiBaseButton>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { useProductStore } from '~/stores/products'
+import { useProductStore } from '~/stores/product'
 
 // استفاده از Pinia store برای محصولات
 const productStore = useProductStore()

@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue'
 import BaseInput from '~/components/ui/BaseInput.vue'
 import { useProductStore } from '~/stores/product'
+// 1. Import the cart store
+import { useCartStore } from '~/stores/cart'
 
 const route = useRoute()
 const productId = Number(route.params.id)
@@ -18,8 +20,15 @@ const totalPrice = computed(() => {
   return (base * quantity.value * discount).toFixed(2)
 })
 
+// 2. Get an instance of the cart store
+const cartStore = useCartStore()
+
 function addToCart() {
-  alert(`Added ${quantity.value} of ${product.value?.name} to cart.`)
+  // 3. Call the cart store's addToCart function
+  if (product.value) {
+    cartStore.addToCart(product.value)
+    alert(`Added ${quantity.value} of ${product.value.name} to cart.`)
+  }
 }
 
 function toggleFavorite() {

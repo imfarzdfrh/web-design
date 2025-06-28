@@ -1,7 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   darkMode: 'class',
-  content: [],
+  content: [
+    './components/**/*.{vue,ts,js}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './composables/**/*.{ts,js}',
+    './nuxt.config.{ts,js}'
+  ],
+
   theme: {
     extend: {
       colors: {

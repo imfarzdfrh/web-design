@@ -1,13 +1,11 @@
 <template>
     <div class="relative">
-      <!-- Stormy Icon -->
       <div class="stormy"></div>
     </div>
   </template>
   
   
   <style scoped>
-  /* STORMY */
   .stormy {
     @apply absolute rounded-full bg-[#222222];
     width: 50px;

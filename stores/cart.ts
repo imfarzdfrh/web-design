@@ -25,8 +25,6 @@ export const useCartStore = defineStore('cart', () => {
   }
 },
   {
-    persist: {
-      storage: process.client ? sessionStorage : null,
-    },
+    persist: true
   }
 )

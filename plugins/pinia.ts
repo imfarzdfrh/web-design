@@ -1,9 +1,8 @@
-import { createPinia } from 'pinia'
 import { defineNuxtPlugin } from '#app'
+import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
-export default defineNuxtPlugin(({ vueApp }) => {
+export default defineNuxtPlugin((nuxtApp) => {
   const pinia = createPinia()
-  vueApp.use(pinia)
   pinia.use(piniaPluginPersistedstate)
 })

@@ -11,7 +11,6 @@
 <script setup>
 const handleClick = () => {
   console.log('Bookmark clicked');
-  // در اینجا می‌توانید کدهای مربوط به عملیات بوک مارک را اضافه کنید.
 };
 </script>
 

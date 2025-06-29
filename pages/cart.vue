@@ -40,7 +40,7 @@ function removeItem(id) {
               class="border-b dark:border-none text-darkText">
               <td class="px-6 py-4 text-sm text-darkText dark:text-lightText">
                 <div class="flex items-center">
-                  <img :src="item.image" class="w-16 h-16 rounded-lg" :alt="item.name" >
+                  <img :src="item.logo" class="w-16 h-16 rounded-lg" :alt="item.name" >
                   <span class="ml-4">{{ item.name }}</span>
                 </div>
               </td>

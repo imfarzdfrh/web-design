@@ -96,5 +96,4 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-/* Optional custom styling for the page */
 </style>

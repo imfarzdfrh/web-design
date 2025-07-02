@@ -15,7 +15,6 @@
             quality picture generate ai
           </p>
         </div>
-
         <div
           class="flex flex-col items-center bg-white p-6 dark:bg-gray-800/50 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
           <div class="bg-lightBackground p-4 rounded-full mb-4">

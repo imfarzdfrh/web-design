@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 import { storeToRefs } from 'pinia'
 
@@ -53,7 +52,7 @@ function handleSearch() {
 
 <template>
   <nav
-    class="px-6 py-4 transition-all shadow-md dark:bg-darkBackground navbar dark:text-darkText bg-lightBackground">
+    class="navbar px-6 py-5 transition-all shadow-md dark:bg-darkBackground  dark:text-darkText bg-lightBackground">
     <div class="container relative flex items-center justify-between mx-auto">
       <div class="flex items-center space-x-7">
         <!-- Logo -->
@@ -136,12 +135,12 @@ function handleSearch() {
             @input="handleSearch"
             type="text"
             placeholder="Search"
-            class="w-[450px] px-10 py-2 border border-gray-500 shadow-md rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-700 dark:bg-darkBackground dark:border-lightBackground/30 dark:text-lightText" >
+            class="w-[400px] px-10 py-2 border border-gray-500 shadow-md rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-700 dark:bg-darkBackground dark:border-lightBackground/30 dark:text-lightText" >
         </div>
       </div>
 
       <!-- Right side -->
-      <ul class="items-center hidden space-x-5 md:flex">
+      <ul class="items-center hidden space-x-7 md:flex">
         <li v-if="!isLoggedIn">
           <NuxtLink to="/login">
             <UiBaseButton color="primary">Sign in</UiBaseButton>

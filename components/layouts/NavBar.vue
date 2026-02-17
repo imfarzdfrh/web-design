@@ -12,7 +12,8 @@ onMounted(() => {
 const isOpen = ref(false)
 const isProductOpen = ref(false)
 const isUserMenuOpen = ref(false)
-const searchQuery = ref('') // This will hold the search input
+// This will hold the search input
+const searchQuery = ref('') 
 
 function toggleMenu() {
   isOpen.value = !isOpen.value
@@ -150,7 +151,7 @@ function handleSearch() {
         <li v-else class="relative">
           <button
             @click="toggleUserMenu"
-            class="relative flex items-center text-sm bg-gray-800 rounded-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            class=" bg-gray-800 rounded-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <span class="sr-only">Open user menu</span>
             <img
               class="rounded-full size-8"

@@ -63,19 +63,16 @@ const handleSubmit = () => {
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <!-- Name Field -->
           <div>
-            <label for="name" class="block text-gray-800 font-medium mb-2">Your Name</label>
             <UiBaseInput placeholder="Enter Your Name" type="text" v-model="form.name" required />
           </div>
 
           <!-- Email Field -->
           <div>
-            <label for="email" class="block text-gray-800 font-medium mb-2">Your Email</label>
             <UiBaseInput placeholder="Enter Your Email" type="email" v-model="form.email"/>
           </div>
 
           <!-- Message Field -->
           <div>
-            <label for="message" class="block text-gray-800 font-medium mb-2">Your Message</label>
             <textarea
               v-model="form.message"
               id="message"

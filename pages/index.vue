@@ -13,7 +13,6 @@ onMounted(() => {
 <template>
   <div class="relative">
     <LayoutsMainBanner />
-
     <LayoutsMainProduct />
     <LayoutsListProduct />
     <LayoutsCategory />

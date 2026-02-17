@@ -50,7 +50,6 @@ const setSize = (svgElement: SVGElement) => {
 }
 
 const setColor = (svgElement: SVGElement) => {
-  // اجازه بده که CSS تعیین‌کننده باشه
   svgElement.setAttribute('fill', 'currentColor')
   svgElement.classList.add('fill-current')
 }

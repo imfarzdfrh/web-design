@@ -2,12 +2,10 @@
 import { ref, computed } from 'vue'
 import { useProductStore } from '~/stores/product'
 
-// استفاده از Pinia store برای محصولات
 const productStore = useProductStore()
 
 const searchQuery = ref('')
   
-// فیلتر کردن محصولات بر اساس عبارت جستجو
 const filteredProducts = computed(() => {
   return productStore.searchProducts(searchQuery.value)
 })
@@ -26,7 +24,6 @@ const filteredProducts = computed(() => {
       >
     </div>
     
-    <!-- نمایش محصولات فیلتر شده -->
     <div v-if="filteredProducts.length > 0">
       <div v-for="product in filteredProducts" :key="product.id" class="mt-6">
         <p>{{ product.name }} - {{ product.price }} USD</p>

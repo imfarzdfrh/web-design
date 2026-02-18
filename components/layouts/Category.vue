@@ -1,7 +1,6 @@
 <template>
   <section class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
     <div class="container mx-auto">
-      <h2 class="text-2xl font-bold mb-8">Categories</h2>
       <div class="flex flex-wrap justify-center gap-8">
         <div
           class="flex flex-col items-center bg-white dark:bg-gray-800/50 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">

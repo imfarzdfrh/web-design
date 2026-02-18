@@ -8,12 +8,10 @@ const products = computed(() => productStore.products)
 </script>
 
 <template>
-  <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
-    <div class="container mx-auto">
-      <h2 class="text-2xl font-bold mb-8">Top Sellers</h2>
-    </div>
+  <div class="py-10 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
+    
 
-    <div class="flex flex-wrap justify-center py-12 space-x-6">
+    <div class="flex flex-wrap justify-center py-10 space-x-6">
       <!-- Loop over products from Pinia store -->
       <UiMainCard
         v-for="item in products"

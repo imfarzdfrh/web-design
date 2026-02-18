@@ -25,8 +25,8 @@ const categories = [
         :key="item.name"
         class="flex items-center gap-3 px-4 py-3 rounded-xl
                text-sm font-medium transition
-               hover:bg-gray-100"
-        :class="item.active ? 'bg-purple-500 text-darkText dark:text-lightText' : 'text-darkText dark:text-lightText'"
+               hover:bg-white hover:text-darkText dark:hover:text-darkText"
+        :class="item.active ? 'bg-primary text-darkText dark:text-lightText' : 'text-darkText dark:text-lightText'"
       >
         <span v-if="item.icon">{{ item.icon }}</span>
         {{ item.name }}

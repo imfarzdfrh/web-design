@@ -1,8 +1,8 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>
-    <LayoutsNavBar class="flex-none" />
+  <div class="min-h-screen bg-lightBackground dark:bg-darkBackground text-darkText dark:text-lightText">
+    <LayoutsNavBar />
+    <main>
       <slot />
+    </main>
   </div>
 </template>

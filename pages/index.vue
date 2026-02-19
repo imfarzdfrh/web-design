@@ -16,7 +16,7 @@ onMounted(() => {
     <LayoutsMainBanner />
 
     <!-- 🧩 Content with Sidebar -->
-    <div class="flex max-w-screen-2xl mx-auto">
+    <div class="flex max-w-screen-2xl mx-20 ">
       <LayoutsSidebar />
 
       <main class="flex-1 px-6 py-8">
@@ -31,4 +31,6 @@ onMounted(() => {
     <LayoutsFooter v-if="isContentLoaded" />
   </div>
 </template>
+
+
 

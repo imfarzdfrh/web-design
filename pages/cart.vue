@@ -40,17 +40,31 @@ function removeItem(id) {
               class="border-b dark:border-none text-darkText">
               <td class="px-6 py-4 text-sm text-darkText dark:text-lightText">
                 <div class="flex items-center">
-                  <img :src="item.logo" class="w-16 h-16 rounded-lg" :alt="item.name" >
+                  <img :src="item.logo" class="w-16 h-16 rounded-lg dark:invert" :alt="item.name" />
                   <span class="ml-4">{{ item.name }}</span>
                 </div>
               </td>
               <td class="px-6 py-4 text-s text-darkText dark:text-lightText">${{ item.price }}</td>
-              <td class="px-6 py-4 text-sm bg-lightBackground text-darkText">
-                <input
-                  type="number"
-                  v-model.number="item.quantity"
-                  min="1"
-                  class="border px-2 py-1 w-16" >
+              <td class="px-6 py-4 text-sm text-darkText">
+                <div class="flex items-center border rounded-lg overflow-hidden w-fit">
+                  <button
+                    @click="item.quantity > 1 && item.quantity--"
+                    class="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition text-lg font-bold">
+                    −
+                  </button>
+
+                  <input
+                    type="number"
+                    v-model.number="item.quantity"
+                    min="1"
+                    class="w-14 text-center outline-none border-x" />
+
+                  <button
+                    @click="item.quantity++"
+                    class="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition text-lg font-bold">
+                    +
+                  </button>
+                </div>
               </td>
               <td class="px-6 py-4 text-gray-800 dark:text-lightText">
                 ${{ (item.price * item.quantity).toFixed(2) }}

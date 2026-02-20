@@ -37,6 +37,18 @@
           </h3>
           <p class="text-darkText dark:text-lightText text-sm text-center">smart chat ai</p>
         </div>
+
+        <div
+          class="flex flex-col items-center bg-white dark:bg-gray-800/50 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+          <div class="bg-lightBackground p-4 rounded-full mb-4">
+            <img src="/assets/icons/gif/graphics-software.gif" alt="Illustrations" class="w-16 h-16" />
+          </div>
+          <h3 class="text-2xl font-semibold mb-2 text-darkText dark:text-lightText">
+            Softwares ai smart
+          </h3>
+          <p class="text-darkText dark:text-lightText text-sm text-center">smart chat ai</p>
+        </div>
+        
       </div>
     </div>
   </section>

@@ -2,17 +2,16 @@
 import { ICON_SET } from '~/constants/Icons';
 
 const categories = [
-  { name: 'Home'},
-  { name: 'New In',  active: true },
-  { name: 'Coats'},
-  { name: 'Tops' },
-  { name: 'Popoular' },
-  { name: 'Dresses' },
-  { name: 'Dresses' },
-  { name: 'Dresses' },
-  { name: 'Dresses' },
-  { name: 'Dresses' },
-
+  { name: 'All Products', active: true },
+  { name: 'AI Tools' },
+  { name: 'Chat AI' },
+  { name: 'Image AI' },
+  { name: 'Video AI' },
+  { name: 'Software' },
+  { name: 'Operating Systems' },
+  { name: 'Design Tools' },
+  { name: 'Best Sellers' },
+  { name: 'Discounts' },
 ]
 </script>
 

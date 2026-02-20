@@ -13,7 +13,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 dark:bg-gray-800/50">
           <div class=" dark:bg-darkElement p-6 rounded-lg shadow-lg">
             <div class="flex items-center justify-center mb-6">
-              <img src="/assets/icons/gif/support.gif" class="w-16 h-16 m-5" />
+              <img src="/assets/icons/gif/support.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
             </div>
             <h3 class="text-2xl font-semibold text-darkText dark:text-lightText">Technical Support</h3>
             <p class="mt-3 dark:text-lightText">
@@ -23,7 +23,7 @@
 
           <div class=" dark:bg-darkElement p-6 rounded-lg shadow-lg">
             <div class="flex items-center justify-center mb-6">
-              <img src="/assets/icons/gif/stopwatch.gif" class="w-16 h-16 m-5" />
+              <img src="/assets/icons/gif/stopwatch.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
             </div>
             <h3 class="text-2xl font-semibold text-darkText dark:text-lightText">Fast Services</h3>
             <p class="mt-3 text-darkText dark:text-lightText">
@@ -33,7 +33,7 @@
 
           <div class=" dark:bg-darkElement p-6 rounded-lg shadow-lg">
             <div class="flex items-center justify-center mb-6">
-              <img src="/assets/icons/gif/coins.gif" class="w-16 h-16 m-5" />
+              <img src="/assets/icons/gif/coins.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
             </div>
             <h3 class="text-2xl font-semibold text-darkText dark:text-lightText">Large Community</h3>
             <p class="mt-3 text-darkText dark:text-lightText">

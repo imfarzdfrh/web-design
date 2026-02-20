@@ -7,7 +7,7 @@ export const useProductStore = defineStore('product', () => {
       id: 1,
       name: 'Chatgpt',
       description: 'Advanced software for data analysis',
-      price: '99000$',
+      price: '12$',
       image: '/temp/pic/chatgpt-banner.jpg',
       logo: '/temp/pic/chatgpt.png',
       logodark: '/temp/pic/chatgptdark.png'
@@ -16,7 +16,7 @@ export const useProductStore = defineStore('product', () => {
       id: 2,
       name: 'DeepSeek',
       description: 'Automated chatbot for customer support',
-      price: '59000$',
+      price: '29$',
       image: '/temp/pic/deepseek-banner.png',
       logo: '/temp/pic/deepseek.png',
       logodark: '/temp/pic/deepseekdark.png'
@@ -25,7 +25,7 @@ export const useProductStore = defineStore('product', () => {
       id: 3,
       name: 'Grok',
       description: 'Advanced software smart ai ',
-      price: '12000$',
+      price: '15$',
       image: '/temp/pic/grok-banner.png',
       logo: '/temp/pic/grok.png',
       logodark: '/temp/pic/grokdark.png'
@@ -34,7 +34,7 @@ export const useProductStore = defineStore('product', () => {
       id: 4,
       name: 'Runaway',
       description: 'Generate video with AI',
-      price: '120000$',
+      price: '54$',
       image: '/temp/pic/runaway-banner.png',
       logo: '/temp/pic/runaway.png',
       logodark : '/temp/pic/runawaydark.png'
@@ -43,7 +43,7 @@ export const useProductStore = defineStore('product', () => {
       id: 5,
       name: 'Netflix',
       description: 'all movie world best quality',
-      price: '120000$',
+      price: '66$',
       image: '/temp/pic/netflix-banner.png',
       logo: '/temp/pic/netfilix.png',
       logodark: '/temp/pic/netfilix.png'
@@ -52,7 +52,7 @@ export const useProductStore = defineStore('product', () => {
       id: 6,
       name: 'CapCut',
       description: 'capcut video editor',
-      price: '120000$',
+      price: '120$',
       image: '/temp/pic/capcut-banner.png',
       logo: '/temp/pic/capcut.png',
       logodark: '/temp/pic/capcut.png'

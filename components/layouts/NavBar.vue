@@ -113,32 +113,7 @@ function handleSearch() {
         </ul>
       </div>
 
-      <!-- Search Bar (On the right side) -->
-      <div class="relative hidden md:block">
-        <!-- Search Input and Icon -->
-        <div class="flex items-center">
-          <!-- Search Icon -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 text-gray-500 absolute left-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-4.35-4.35M10 16a6 6 0 100-12 6 6 0 000 12z" />
-          </svg>
-          <!-- Search Input -->
-          <input
-            v-model="searchQuery"
-            @input="handleSearch"
-            type="text"
-            placeholder="Search"
-            class="w-[400px] px-10 py-2 border border-gray-500 shadow-md rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-700 dark:bg-darkBackground dark:border-lightBackground/30 dark:text-lightText" >
-        </div>
-      </div>
+   
 
       <!-- Right side -->
       <ul class="items-center hidden space-x-7 md:flex">

@@ -15,7 +15,7 @@ export const useProductStore = defineStore('product', () => {
     {
       id: 2,
       name: 'DeepSeek',
-      description: 'Automated chatbot for customer support',
+      description: 'Automated chatbot',
       price: '29$',
       image: '/temp/pic/deepseek-banner.png',
       logo: '/temp/pic/deepseek.png',

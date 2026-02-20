@@ -123,13 +123,13 @@ function handleSearch() {
           </NuxtLink>
         </li>
 
-        <li v-else class="relative">
+        <li v-else class="relative mt-2">
           <button
             @click="toggleUserMenu"
             class=" bg-gray-800 rounded-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <span class="sr-only">Open user menu</span>
             <img
-              class="rounded-full size-8"
+              class="rounded-full size-10"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="" />
           </button>

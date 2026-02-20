@@ -32,12 +32,12 @@ const buttonColorClass = computed(() => {
 const buttonSizeClass = computed(() => {
   switch (props.size) {
     case 'small':
-      return 'text-sm py-1 px-3'
+      return 'text-sm  px-3'
     case 'large':
-      return 'text-lg py-3 px-6'
+      return 'text-lg px-6'
     case 'medium':
     default:
-      return 'text-base py-2 px-5'
+      return 'text-base px-5'
   }
 })
 
@@ -49,7 +49,7 @@ const buttonHoverClass = computed(() => {
 <template>
   <button
     :class="[
-      'inline-flex items-center justify-center rounded-lg font-semibold transition-all duration-300 ease-in-out ',
+      'inline-flex items-center justify-center py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out ',
       buttonColorClass,
       buttonSizeClass,
       buttonHoverClass

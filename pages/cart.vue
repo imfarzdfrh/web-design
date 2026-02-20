@@ -13,7 +13,7 @@ function removeItem(id) {
 </script>
 
 <template>
-  <div class="flex w-full h-screen bg-lightBackground dark:bg-darkBackground">
+  <div class="flex w-full h-screen bg-lightBackground dark:bg-darkBackground mt-10">
     <div class="container mx-auto py-12">
       <h1 class="text-3xl font-bold text-center mb-6 text-darkText dark:text-lightText">
         Shopping Cart
@@ -25,11 +25,10 @@ function removeItem(id) {
         <table class="min-w-full table-auto mt-4">
           <thead>
             <tr class="border-b dark:border-none dark:text-lightText">
-              <th class="px-6 py-3 text-left font-medium">Product</th>
-              <th class="px-6 py-3 text-left font-medium">Price</th>
-              <th class="px-6 py-3 text-left font-medium">Quantity</th>
-              <th class="px-6 py-3 text-left font-medium">Total</th>
-              <th class="px-6 py-3 text-left font-medium">Actions</th>
+              <th class="p-7 text-left font-bold">Product</th>
+              <th class="p-7 text-left font-bold">Price</th>
+              <th class="p-7 text-left font-bold">Quantity</th>
+              <th class="p-7 text-left font-bold">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +43,7 @@ function removeItem(id) {
                   <span class="ml-4">{{ item.name }}</span>
                 </div>
               </td>
-              <td class="px-6 py-4 text-s text-darkText dark:text-lightText">${{ item.price }}</td>
+              <td class="px-6 py-4 text-s text-darkText dark:text-lightText">{{ item.price }}</td>
               <td class="px-6 py-4 text-sm text-darkText">
                 <div class="flex items-center border rounded-lg overflow-hidden w-fit">
                   <button
@@ -55,6 +54,7 @@ function removeItem(id) {
 
                   <input
                     type="number"
+                     inputmode="numeric"
                     v-model.number="item.quantity"
                     min="1"
                     class="w-14 text-center outline-none border-x" />

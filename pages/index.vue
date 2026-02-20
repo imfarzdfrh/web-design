@@ -21,7 +21,11 @@ onMounted(() => {
 
       <main class="flex-1 px-6 py-8">
         <LayoutsMainProduct />
-        <LayoutsListProduct />
+        <LayoutsListProduct title="All Products" />
+        <LayoutsListProduct title="Top Sellers" />
+        <LayoutsListProduct title="Popular" />
+
+
         <LayoutsCategory />
         <LayoutsOverviewSection />
       </main>

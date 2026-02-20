@@ -2,6 +2,13 @@
 import { useProductStore } from '@/stores/product'
 import { computed, ref } from 'vue'
 
+defineProps({
+  title: {
+    type: String,
+    required: true
+  }
+})
+
 const productStore = useProductStore()
 const products = computed(() => productStore.products)
 
@@ -23,8 +30,8 @@ const prev = () => {
 <template>
   <div class="py-12  bg-lightBackground dark:bg-darkBackground dark:text-lightText">
       <h2 class="text-xl font-bold p-5 text-darkText dark:text-lightText">
-        All Products  
-        </h2>
+    {{ title }}
+  </h2>
     <div class="relative max-w-7xl mx-auto px-5 group">
       <!-- Left Button -->
       <button

@@ -146,7 +146,7 @@ const handleLogin = async () => {
           id="email"
           v-model="email"
           placeholder="Enter your email"
-          class="mx-auto"
+          class="mx-auto py-2"
           required />
 
         <UiBaseInput
@@ -154,7 +154,7 @@ const handleLogin = async () => {
           id="password"
           v-model="password"
           placeholder="Enter your Password"
-          class="mx-auto"
+          class="mx-auto py-2"
           required />
 
         <div class="flex items-center justify-center mt-5">

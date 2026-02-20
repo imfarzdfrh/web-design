@@ -28,11 +28,11 @@ const prev = () => {
 </script>
 
 <template>
-  <div class="py-12  bg-lightBackground dark:bg-darkBackground dark:text-lightText">
-      <h2 class="text-xl font-bold p-5 text-darkText dark:text-lightText">
+  <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
+      <h2 class="text-xl font-bold p-7 text-darkText dark:text-lightText">
     {{ title }}
   </h2>
-    <div class="relative max-w-7xl mx-auto px-5 group">
+    <div class="relative max-w-7xl mx-auto px-7 group">
       <!-- Left Button -->
       <button
         @click="prev"
@@ -43,7 +43,7 @@ const prev = () => {
       <!-- Slider -->
       <div class="overflow-hidden">
         <div
-          class="flex gap-4 transition-transform duration-300 ease-in-out"
+          class="flex gap-5 py-6 transition-transform duration-300 ease-in-out"
           :style="{ transform: `translateX(-${currentIndex * 280}px)` }">
           <UiMainCard
             v-for="item in products"

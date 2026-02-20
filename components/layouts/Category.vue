@@ -1,5 +1,5 @@
 <template>
-  <section class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
+  <section class="py-20 mt-10 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
     <div class="container mx-auto">
       <div class="flex flex-wrap justify-center gap-8">
         <div

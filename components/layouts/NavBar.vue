@@ -35,14 +35,45 @@ const links = [
     label: 'Category',
     to: '#',
     submenu: [
-      { label: 'Chat bot', to: '/' },
-      { label: 'Image generator', to: '/' },
-      { label: 'Video generator', to: '/' }
+      {
+        label: 'Chat bot',
+        children: [
+          { label: 'ChatGPT', to: '/chatgpt' },
+          { label: 'DeepSeek', to: '/deepseek' },
+          { label: 'Grok', to: '/grok' },
+          { label: 'Gemini', to: '/gemini' },
+          { label: 'Claude', to: '/claude' }
+        ]
+      },
+      {
+        label: 'Image generator',
+        children: [
+          { label: 'Midjourney', to: '/midjourney' },
+          { label: 'DALL·E', to: '/dalle' },
+          { label: 'Leonardo', to: '/leonardo' },
+          { label: 'Stable Diffusion', to: '/stable-diffusion' }
+        ]
+      },
+      {
+        label: 'Video generator',
+        children: [
+          { label: 'Runway', to: '/runway' },
+          { label: 'Pika', to: '/pika' },
+          { label: 'Sora', to: '/sora' },
+          { label: 'Kaiber', to: '/kaiber' }
+        ]
+      }
     ]
   },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' }
 ]
+
+const openSubMenu = ref<string | null>(null)
+
+function toggleSubMenu(label: string) {
+  openSubMenu.value = openSubMenu.value === label ? null : label
+}
 
 function handleSearch() {
   if (searchQuery.value.trim() !== '') {
@@ -92,22 +123,58 @@ function handleSearch() {
               </button>
 
               <!-- Submenu (Dropdown) -->
-              <transition name="dropdown">
-                <div
-                  v-if="isProductOpen"
-                  class="absolute left-0 w-48 mt-2 bg-white rounded-md shadow-lg dark:bg-darkBackground ring-1 ring-black/5 focus:outline-hidden z-10"
-                  @click.stop>
-                  <ul class="py-2 space-y-2">
-                    <li v-for="subLink in link.submenu" :key="subLink.to">
-                      <NuxtLink
-                        :to="subLink.to"
-                        class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
-                        {{ subLink.label }}
-                      </NuxtLink>
-                    </li>
-                  </ul>
-                </div>
-              </transition>
+        <transition name="dropdown">
+  <div
+    v-if="isProductOpen"
+    class="absolute left-0 mt-2 w-64 bg-white dark:bg-darkBackground rounded-xl shadow-lg ring-1 ring-black/5 z-20"
+    @click.stop
+  >
+    <ul class="py-2">
+      <li
+        v-for="item in link.submenu"
+        :key="item.label"
+        class="relative"
+      >
+        <!-- level 1 -->
+        <button
+          @click="toggleSubMenu(item.label)"
+          class="flex w-full items-center justify-between px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          <span>{{ item.label }}</span>
+          <svg
+            class="w-4 h-4 transition-transform"
+            :class="{ 'rotate-180': openSubMenu === item.label }"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- level 2 -->
+        <transition name="fade">
+          <ul
+            v-if="openSubMenu === item.label"
+            class="pl-6 py-2 space-y-1"
+          >
+            <li
+              v-for="child in item.children"
+              :key="child.label"
+            >
+              <NuxtLink
+                :to="child.to"
+                class="block px-3 py-1 text-sm rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+              >
+                {{ child.label }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </transition>
+      </li>
+    </ul>
+  </div>
+</transition>
             </div>
           </li>
         </ul>

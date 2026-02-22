@@ -2,20 +2,27 @@
 import { useProductStore } from '@/stores/product'
 import { computed, ref } from 'vue'
 
-defineProps({
-  title: {
-    type: String,
-    required: true
-  }
-})
+// تعریف props با تایپ کامل
+const props = defineProps<{
+  title: string
+  category?: string          // اختیاری باشه
+}>()
 
 const productStore = useProductStore()
-const products = computed(() => productStore.products)
+
+// حالا props.category کاملاً معتبره
+if (props.category) {
+  productStore.setCategory(props.category)
+}
+
+const displayedProducts = computed(() => productStore.filteredProducts)
 
 const currentIndex = ref(0)
-const visibleCount = 4 
+const visibleCount = 4
+const cardWidth = 280
+
 const next = () => {
-  if (currentIndex.value < products.value.length - visibleCount) {
+  if (currentIndex.value < displayedProducts.value.length - visibleCount) {
     currentIndex.value++
   }
 }
@@ -26,12 +33,11 @@ const prev = () => {
   }
 }
 </script>
-
 <template>
   <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
-      <h2 class="text-xl font-bold p-7 text-darkText dark:text-lightText">
-    {{ title }}
-  </h2>
+    <h2 class="text-xl font-bold p-7 text-darkText dark:text-lightText">
+      {{ title }}
+    </h2>
     <div class="relative max-w-7xl mx-auto px-7 group">
       <!-- Left Button -->
       <button
@@ -41,12 +47,12 @@ const prev = () => {
       </button>
 
       <!-- Slider -->
-      <div class="overflow-hidden">
+     <div class="overflow-hidden">
         <div
           class="flex gap-5 py-6 transition-transform duration-300 ease-in-out"
-          :style="{ transform: `translateX(-${currentIndex * 280}px)` }">
+          :style="{ transform: `translateX(-${currentIndex * cardWidth}px)` }">
           <UiMainCard
-            v-for="item in products"
+            v-for="item in displayedProducts"
             :key="item.id"
             :id="item.id"
             :name="item.name"
@@ -55,10 +61,10 @@ const prev = () => {
             :title="item.name"
             :description="item.description"
             :price="item.price"
-            class="w-[250px] flex-shrink-0" />
+            class="w-[250px] flex-shrink-0"
+          />
         </div>
       </div>
-
       <!--  Right Button -->
       <button
         @click="next"

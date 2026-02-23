@@ -56,7 +56,7 @@ function decreaseQty() {
               <HeartIcon />
             </button>
           </div>
-          <p class="mt-2">{{ product.description }}</p>
+          <p class="mt-2">{{ product.title }}</p>
 
           <div class="font-sans mt-6">
             <span class="text-3xl font-bold text-gray-900 dark:text-lightText">{{ product.price }}</span>
@@ -104,10 +104,9 @@ function decreaseQty() {
         <h2 class="text-2xl font-semibold mb-4">Descraption</h2>
         <div class="p-4 bg-gray-200/45 dark:bg-gray-800/50 rounded-lg flex items-start py-10 shadow-sm">
           <div>
-            <p class="font-semibold">Chatgpt Ai</p>
+            <p class="font-semibold">{{ product.name }}</p>
             <p class="text-sm mt-1">
-              Great product very satisfied! Great product very satisfied! Great product very
-              satisfied!
+              {{ product.description }}
             </p>
           </div>
         </div>

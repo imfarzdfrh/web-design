@@ -21,9 +21,9 @@ onMounted(() => {
 
       <main class="flex-1 px-6 py-8">
         <LayoutsMainProduct />
-        <LayoutsListProduct title="All Products" category="AI Chatbot" />
-        <LayoutsListProduct title="Top Sellers" category="AI Chatbot"  />
-        <LayoutsListProduct title="Popular" category="AI Chatbot"  />
+        <LayoutsListProduct title="All Products" :categories="[]"/>
+        <LayoutsListProduct title="Operating System" category="Operating System"  />
+        <LayoutsListProduct title="AI Video" category="AI Video"  />
 
 
         <LayoutsCategory />

@@ -5,17 +5,22 @@ import { computed, ref } from 'vue'
 // تعریف props با تایپ کامل
 const props = defineProps<{
   title: string
-  category?: string          // اختیاری باشه
+  category?: string         
 }>()
 
 const productStore = useProductStore()
 
-// حالا props.category کاملاً معتبره
 if (props.category) {
   productStore.setCategory(props.category)
 }
 
-const displayedProducts = computed(() => productStore.filteredProducts)
+const displayedProducts = computed(() => {
+  if (!props.category) return productStore.products
+
+  return productStore.products.filter(product =>
+    product.categories.includes(props.category!)
+  )
+})
 
 const currentIndex = ref(0)
 const visibleCount = 4
@@ -35,7 +40,7 @@ const prev = () => {
 </script>
 <template>
   <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
-    <h2 class="text-xl font-bold p-7 text-darkText dark:text-lightText">
+    <h2 class="text-xl font-bold px-7 py-3 text-darkText dark:text-lightText">
       {{ title }}
     </h2>
     <div class="relative max-w-7xl mx-auto px-7 group">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { useCartStore } from '@/stores/cart'
+import { Title } from '#components'
 
 const props = defineProps({
   id: {
@@ -23,10 +24,6 @@ const props = defineProps({
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  },
   price: {
     type: String,
     required: true
@@ -39,6 +36,7 @@ function handleAddToCart() {
   cart.addToCart({
     id: props.id,
     name: props.name,
+    Title: props.title,
     price: parseFloat(props.price.replace('$', '')),
     image: props.logo,
   })
@@ -55,9 +53,9 @@ function handleAddToCart() {
       <div class="flex flex-col justify-between p-4 h-full">
         <div>
           <h3 class="mb-3 text-xl font-bold text-gray-800 dark:text-lightText">
-            {{ props.title }}
+            {{ props.name }}
           </h3>
-          <p class="mb-4 text-gray-600 dark:text-lightText">{{ props.description }}</p>
+          <p class="mb-4 text-gray-600 dark:text-lightText">{{ props.title }}</p>
         </div>
 
         <div class="flex items-center justify-between mt-auto">

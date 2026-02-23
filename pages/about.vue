@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-lightBackground dark:bg-darkBackground text-darkText dark:text-lightText">
+  <div class="relative">
     <div class="container mx-auto py-12">
       <h1 class="text-4xl font-bold text-center mb-8">About Us</h1>
 

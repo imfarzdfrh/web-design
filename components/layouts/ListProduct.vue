@@ -39,8 +39,8 @@ const prev = () => {
 }
 </script>
 <template>
-  <div class="py-16 bg-lightBackground dark:bg-darkBackground dark:text-lightText">
-    <h2 class="text-xl font-bold px-7 py-3 text-darkText dark:text-lightText">
+  <div class="py-16">
+    <h2 class="text-xl font-bold px-8 py-2">
       {{ title }}
     </h2>
     <div class="relative max-w-7xl mx-auto px-7 group">
@@ -54,7 +54,7 @@ const prev = () => {
       <!-- Slider -->
      <div class="overflow-hidden">
         <div
-          class="flex gap-5 py-6 transition-transform duration-300 ease-in-out"
+          class="flex gap-5 py-7 transition-transform duration-300 ease-in-out"
           :style="{ transform: `translateX(-${currentIndex * cardWidth}px)` }">
           <UiMainCard
             v-for="item in displayedProducts"

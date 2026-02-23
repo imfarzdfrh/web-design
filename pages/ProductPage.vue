@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { useProductStore } from '~/stores/product'
 import { useRouter } from 'vue-router'
 import UiSecondCard from '~/components/ui/SecondCard.vue'
+import BaseInput from '~/components/ui/BaseInput.vue'
 
 definePageMeta({
   name: 'productpage',
@@ -73,20 +74,18 @@ function viewProduct(id: number) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-lightBackground dark:bg-darkBackground mt-10">
-    <div class="container mx-auto px-2 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
+  <div class="mt-10">
+    <div class="container mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-10">
 
       <!-- Sidebar -->
-      <aside class="lg:col-span-1 bg-white dark:bg-[#001d3d] rounded-2xl p-6 shadow-md space-y-6">
+      <aside class="lg:col-span-1 bg-white dark:bg-[#001d3d] rounded-2xl p-9 shadow-md space-y-8">
         
         <!-- Search -->
         <div>
-          <h3 class="font-semibold mb-4">Search</h3>
-          <input
+          <BaseInput
             v-model="searchTerm"
             type="text"
             placeholder="Search products..."
-            class="w-full px-4 py-3 mt-2 dark:bg-darkBackground rounded-lg focus:ring-2 focus:ring-primary outline-none"
           />
         </div>
 
@@ -104,17 +103,15 @@ function viewProduct(id: number) {
         <div>
           <h3 class="font-semibold mb-4">Price Range</h3>
           <div class="flex gap-3">
-            <input
+            <BaseInput
               type="number"
               v-model="minPrice"
-              placeholder="Min"
-              class="w-full px-3 py-2 rounded-lg dark:bg-darkBackground"
+              placeholder="Min""
             />
-            <input
+            <BaseInput
               type="number"
               v-model="maxPrice"
               placeholder="Max"
-              class="w-full px-3 py-2 rounded-lg dark:bg-darkBackground"
             />
           </div>
         </div>

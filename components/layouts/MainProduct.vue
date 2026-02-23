@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="py-12 dark:bg-darkBackground dark:text-lightText bg-lightBackground">
+    <div class="py-12">
       <div class="relative w-full max-w-6xl mx-auto transition-transform transform shadow-xl duration-600 opacity-90 hover:opacity-100 rounded-xl h-80 hover:scale-105">
         <img src="/temp/pic/banner3.png" alt="Image 1" class="object-cover w-full h-full rounded-xl">
         <div class="absolute p-3 text-white bottom-4 left-4">

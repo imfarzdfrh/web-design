@@ -1,7 +1,7 @@
 <template>
-  <div class="flex h-screen bg-lightBackground text-darkText dark:bg-darkBackground dark:text-lightText">
+  <div class="flex h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-lightBackground dark:bg-darkBackground border-r shadow-md flex flex-col">
+    <aside class="w-64 border-r shadow-md flex flex-col">
       <!-- Nav -->
       <nav class="flex-1 px-4 space-y-1">
         <a href="#" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 transition">

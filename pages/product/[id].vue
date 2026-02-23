@@ -43,7 +43,7 @@ function decreaseQty() {
 
 <template>
   <div
-    class="relative bg-lightBackground dark:bg-darkBackground h-full text-darkText dark:text-lightText">
+    class="relative h-full">
     <div class="container mx-auto py-12 px-4">
       <div v-if="product" class="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
@@ -80,7 +80,7 @@ function decreaseQty() {
             <label class="text-lg font-bold">Discount Code</label>
             <div class="flex gap-2 items-center mt-4">
               <BaseInput type="text" placeholder="Enter code" />
-              <UiBaseButton color="success" class="h-full mt-7">
+              <UiBaseButton color="success" class="">
                 <TagIcon class="w-4 h-4" />
                 <p class="px-2">Apply</p>
               </UiBaseButton>

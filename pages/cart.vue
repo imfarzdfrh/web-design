@@ -13,16 +13,16 @@ function removeItem(id) {
 </script>
 
 <template>
-  <div class="flex w-full h-screen bg-lightBackground dark:bg-darkBackground mt-10">
+  <div class="flex w-full h-screen mt-10">
     <div class="container mx-auto py-12">
       <h1 class="text-3xl font-bold text-center mb-6 text-darkText dark:text-lightText">
         Shopping Cart
       </h1>
 
-      <!-- Cart items table -->
+      <!-- Cart items table --> 
       <div
-        class="overflow-x-auto shadow-lg rounded-lg bg-lightBackground/85 dark:bg-gray-800/50 my-10">
-        <table class="min-w-full table-auto mt-4">
+        class="overflow-x-auto shadow-lg rounded-lg bg-lightBackground/85 dark:bg-gray-800/40 my-12">
+        <table class="min-w-full table-auto">
           <thead>
             <tr class="border-b dark:border-none dark:text-lightText">
               <th class="p-7 text-left font-bold">Product</th>
@@ -80,21 +80,21 @@ function removeItem(id) {
       <!-- Cart total section -->
       <div class="flex justify-end mt-6">
         <div
-          class="w-1/3 bg-lightBackground/85 dark:bg-gray-800/50 p-6 rounded-lg shadow-lg text-darkText dark:text-lightText">
-          <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-          <div class="flex justify-between mb-2">
-            <span class="text-sm">Subtotal</span>
+          class="w-1/3 bg-lightBackground/85 dark:bg-gray-800/40 p-6 rounded-lg shadow-lg text-darkText dark:text-lightText">
+          <h2 class="text-xl font-semibold py-6">Order Summary</h2>
+          <div class="flex justify-between py-4">
+            <span class="text-sm ">Subtotal</span>
             <span class="text-sm">${{ subtotal.toFixed(2) }}</span>
           </div>
-          <div class="flex justify-between mb-4">
+          <div class="flex justify-between py-2">
             <span class="text-sm">Shipping</span>
             <span class="text-sm">$5.00</span>
           </div>
-          <div class="flex justify-between mb-4">
-            <span class="text-lg font-semibold">Total</span>
-            <span class="text-sm">${{ subtotal.toFixed(2) }}</span>
+          <div class="flex justify-between py-10">
+            <span class="text-xl font-semibold">Total</span>
+            <span class="text-lg font-bold">${{ subtotal.toFixed(2) }}</span>
           </div>
-          <UiBaseButton class="w-full py-2 px-4"> Proceed to Checkout </UiBaseButton>
+          <UiBaseButton class="w-full"> Proceed to Checkout </UiBaseButton>
         </div>
       </div>
     </div>

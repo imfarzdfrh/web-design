@@ -31,8 +31,6 @@ onMounted(() => {
       </main>
     </div>
 
-    <!-- 🔻 Footer | Full Width -->
-    <LayoutsFooter v-if="isContentLoaded" />
   </div>
 </template>
 

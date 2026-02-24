@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { useCartStore } from '@/stores/cart'
 
 const cart = useCartStore()
@@ -13,89 +14,130 @@ function removeItem(id) {
 </script>
 
 <template>
-  <div class="flex w-full h-screen mt-10">
-    <div class="container mx-auto py-12">
-      <h1 class="text-3xl font-bold text-center mb-6 text-darkText dark:text-lightText">
-        Shopping Cart
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div class="max-w-7xl mx-auto px-4">
+
+      <!-- Title -->
+      <h1 class="text-3xl font-light text-center mb-10 text-darkText dark:text-lightText">
+        Your Shopping Cart
       </h1>
 
-      <!-- Cart items table --> 
-      <div
-        class="overflow-x-auto shadow-lg rounded-lg bg-lightBackground/85 dark:bg-gray-800/40 my-12">
-        <table class="min-w-full table-auto">
-          <thead>
-            <tr class="border-b dark:border-none dark:text-lightText">
-              <th class="p-7 text-left font-bold">Product</th>
-              <th class="p-7 text-left font-bold">Price</th>
-              <th class="p-7 text-left font-bold">Quantity</th>
-              <th class="p-7 text-left font-bold">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Cart item 1 -->
-            <tr
-              v-for="item in cart.cartItems"
-              :key="item.id"
-              class="border-b dark:border-none text-darkText">
-              <td class="px-6 py-4 text-sm text-darkText dark:text-lightText">
-                <div class="flex items-center">
-                  <img :src="item.logo" class="w-16 h-16 rounded-lg dark:invert" :alt="item.name" />
-                  <span class="ml-4">{{ item.name }}</span>
-                </div>
-              </td>
-              <td class="px-6 py-4 text-s text-darkText dark:text-lightText">{{ item.price }}</td>
-              <td class="px-6 py-4 text-sm text-darkText">
-                <div class="flex items-center border rounded-lg overflow-hidden w-fit">
-                  <button
-                    @click="item.quantity > 1 && item.quantity--"
-                    class="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition text-lg font-bold">
-                    −
-                  </button>
-
-                  <input
-                    type="number"
-                     inputmode="numeric"
-                    v-model.number="item.quantity"
-                    min="1"
-                    class="w-14 text-center outline-none border-x" />
-
-                  <button
-                    @click="item.quantity++"
-                    class="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition text-lg font-bold">
-                    +
-                  </button>
-                </div>
-              </td>
-              <td class="px-6 py-4 text-gray-800 dark:text-lightText">
-                ${{ (item.price * item.quantity).toFixed(2) }}
-              </td>
-              <td class="px-6 py-4 text-darkText dark:text-lightText">
-                <TrashIcon class="h-6 w-6 text-danger" @click="removeItem(item.id)" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Steps -->
+      <div class="flex justify-center gap-10 mb-16">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-full bg-black dark:bg-gray-600/50 text-white flex items-center justify-center">1</span>
+          <span class="font-medium">Shopping cart</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-400">
+          <span class="w-8 h-8 rounded-full bg-gray-200 dark:text-darkText flex items-center justify-center">2</span>
+          <span>Checkout details</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-400">
+          <span class="w-8 h-8 rounded-full bg-gray-200 dark:text-darkText flex items-center justify-center">3</span>
+          <span>Order complete</span>
+        </div>
       </div>
 
-      <!-- Cart total section -->
-      <div class="flex justify-end mt-6">
-        <div
-          class="w-1/3 bg-lightBackground/85 dark:bg-gray-800/40 p-6 rounded-lg shadow-lg text-darkText dark:text-lightText">
-          <h2 class="text-xl font-semibold py-6">Order Summary</h2>
-          <div class="flex justify-between py-4">
-            <span class="text-sm ">Subtotal</span>
-            <span class="text-sm">${{ subtotal.toFixed(2) }}</span>
+      <div class="py-6 px-4">
+        <h2 class="text-xl font-bold">Your Carts</h2>
+      </div>
+
+      <!-- Main layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+        <!-- Cart Items -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <div
+            v-for="item in cart.cartItems"
+            :key="item.id"
+            class="bg-white dark:bg-gray-800/80 rounded-2xl px-5 py-8 shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+          >
+            <!-- Product info -->
+            <div class="flex items-center gap-4">
+              <img
+                :src="item.logo"
+                :alt="item.name"
+                class="w-32 h-32 rounded-full bg-gray-100 dark:invert p-2"
+              />
+
+              <div>
+                <h3 class="font-semibold text-lg text-darkText dark:text-lightText">
+                  {{ item.name }}
+                </h3>
+                <p>{{ item.title }}</p>
+                <p class="font-bold text-gray-500 py-6">${{ item.price }}</p>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="fle flex-col items-center gap-6">
+
+                <!-- Remove -->
+              <button @click="removeItem(item.id)" class="text-red-500 hover:scale-110 transition">
+                🗑
+              </button>
+
+              <!-- Quantity -->
+              <div class="flex items-center border rounded-full overflow-hidden">
+                <button
+                  @click="item.quantity > 1 && item.quantity--"
+                  class="px-4 py-1 bg-gray-100 hover:bg-gray-200 text-lg"
+                >
+                  −
+                </button>
+
+                <input
+                  type="number"
+                  min="1"
+                  v-model.number="item.quantity"
+                  class="w-14 text-center outline-none border-x bg-transparent"
+                />
+
+                <button
+                  @click="item.quantity++"
+                  class="px-4 py-1 bg-gray-100 hover:bg-gray-200 text-lg"
+                >
+                  +
+                </button>
+              </div>
+
+             
+
+            
+            </div>
           </div>
-          <div class="flex justify-between py-2">
-            <span class="text-sm">Shipping</span>
-            <span class="text-sm">$5.00</span>
-          </div>
-          <div class="flex justify-between py-10">
-            <span class="text-xl font-semibold">Total</span>
-            <span class="text-lg font-bold">${{ subtotal.toFixed(2) }}</span>
-          </div>
-          <UiBaseButton class="w-full"> Proceed to Checkout </UiBaseButton>
         </div>
+
+        <!-- Order Summary -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow h-fit text-darkText dark:text-lightText"
+        >
+          <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
+
+          <div class="space-y-4 text-sm">
+            <div class="flex justify-between">
+              <span>Subtotal</span>
+              <span>${{ subtotal.toFixed(2) }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Shipping</span>
+              <span>$5.00</span>
+            </div>
+          </div>
+
+          <hr class="my-6 dark:border-gray-700" />
+
+          <div class="flex justify-between text-lg font-semibold mb-6">
+            <span>Total</span>
+            <span>${{ (subtotal + 5).toFixed(2) }}</span>
+          </div>
+
+          <UiBaseButton class="w-full">
+            Proceed to Checkout →
+          </UiBaseButton>
+        </div>
+
       </div>
     </div>
   </div>

@@ -30,7 +30,7 @@ function scrollTo(target: string) {
 
 <template>
   <aside
-    class="hidden mt-16 lg:flex w-56 shrink-0 flex-col gap-6 rounded-2xl
+    class="hidden mt-16 lg:flex w-56 shrink-0 flex-col gap-5 rounded-2xl
            bg-[#e5e5e5]/40 shadow-xl dark:bg-[#001d3d]/40 border border-white/5
            px-3 py-8 sticky top-24 h-fit"
   >

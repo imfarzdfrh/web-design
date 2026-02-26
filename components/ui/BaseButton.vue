@@ -21,7 +21,7 @@ const buttonColorClass = computed(() => {
     case 'black':
       return 'bg-black text-white'
     case 'success':
-      return 'bg-gradiant-success text-black'
+      return 'bg-gradiant-success text-gray-900'
     case 'warning':
       return 'bg-warning text-black'
     default:

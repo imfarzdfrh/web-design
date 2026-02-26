@@ -1,5 +1,5 @@
-// stores/cart.ts
 import { defineStore } from 'pinia'
+
 export const useCartStore = defineStore('cart', {
   state: () => ({
     cartItems: []
@@ -7,12 +7,25 @@ export const useCartStore = defineStore('cart', {
 
   actions: {
     addToCart(product) {
-      this.cartItems.push(product)
+      const item = this.cartItems.find(i => i.id === product.id)
+
+      if (item) {
+        item.quantity++
+      } else {
+        this.cartItems.push({ ...product, quantity: 1 })
+      }
     },
+
     removeFromCart(id) {
-      this.cartItems = this.cartItems.filter(item => item.id !== id)
+      this.cartItems = this.cartItems.filter(i => i.id !== id)
+    },
+
+    clearCart() {
+      this.cartItems = []
     }
   },
 
-  persist: true // 👈 همین خط جادویی
+  persist: {
+    storage: persistedState.localStorage
+  }
 })

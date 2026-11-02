@@ -1,46 +1,29 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue';
-
-const props = defineProps({
-  id: {
-    type: String,
-    default: '1',
-  },
-  type: {
-    type: String,
-    default: 'email',
-  },
-  placeholder: {
-    type: String,
-    default: 'Enter your email',
-  },
-  modelValue: {
-    type: String,
-    default: '',
-  },
-});
-
-const emit = defineEmits();
-
-const email = ref(props.modelValue);
-
-const updateEmail = () => {
-  emit('update:modelValue', email.value);
-};
+const props = withDefaults(defineProps<{
+  id?: string
+  type?: string
+  placeholder?: string
+  modelValue?: string | number | null
+}>(), {
+  type: 'text',
+  placeholder: ''
+})
+const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
+function onInput(event: Event) {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
+}
 </script>
-
 <template>
-  <div class="flex w-full max-w-xs">
-    <label :for="id" class="block  text-sm font-semibold text-gray-700 dark:text-gray-300">
-    </label>
+  <div class="w-full">
+    <label v-if="id" :for="id" class="sr-only">{{ placeholder || id }}</label>
     <input
-      :type="type"
       :id="id"
-      v-bind="$attrs"
-      v-model="email"
+      :type="type"
+      :value="modelValue ?? ''"
       :placeholder="placeholder"
-      class="w-full px-4 py-3 border border-gray-400/50 rounded-lg dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
-      required
-    >
+      v-bind="$attrs"
+      class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[#8175ec] focus:ring-4 focus:ring-[#8175ec]/10"
+      @input="onInput"
+    />
   </div>
 </template>

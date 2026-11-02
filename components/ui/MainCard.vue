@@ -16,7 +16,7 @@ const added = ref(false)
 function handleAddToCart() {
   cart.addToCart({
     id: props.id, name: props.name, title: props.title, logo: props.logo,
-    price: props.price
+    logodark: props.logodark, price: props.price
   })
   added.value = true
 }
@@ -26,7 +26,7 @@ function handleAddToCart() {
     <NuxtLink :to="'/product/' + id" class="block" :aria-label="'View ' + name">
       <div class="relative flex aspect-[1.45] items-center justify-center overflow-hidden rounded-[21px] bg-gradient-to-br from-[#eeebff] via-[#f3f6ff] to-[#e6f9fb] dark:from-[#282c49] dark:via-[#242b43] dark:to-[#1e3d49]">
         <span class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[10px] font-bold text-[#6259a1] backdrop-blur">Digital</span>
-        <img :src="logo" :alt="name + ' logo'" loading="lazy" class="h-20 w-20 object-contain drop-shadow-xl transition duration-500 group-hover:scale-110 sm:h-24 sm:w-24" />
+        <UiProductLogo :name="name" :logo="logo" :logodark="logodark" class="size-20 drop-shadow-xl transition duration-500 group-hover:scale-110 sm:size-24" />
         <UiSimpleArrow class="absolute right-3 top-3 size-4 text-[#8b8bad]" aria-hidden="true" />
       </div>
       <div class="mt-5">

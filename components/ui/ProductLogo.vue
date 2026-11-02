@@ -28,7 +28,7 @@ const hasDarkVariant = computed(() =>
         class="block size-full object-contain dark:hidden"
       />
       <img
-        :src="logodark!"
+        :src="logodark || logo"
         :alt="`${name} logo`"
         :loading="loading"
         decoding="async"

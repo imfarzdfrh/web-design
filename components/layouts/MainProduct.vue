@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ArrowUpRightIcon } from '@heroicons/vue/24/outline'
 </script>
 <template>
   <section class="py-9 sm:py-14" aria-labelledby="spotlight-heading">
@@ -15,7 +14,7 @@ import { ArrowUpRightIcon } from '@heroicons/vue/24/outline'
           <span class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-md">For creators</span>
           <h3 class="mt-auto text-3xl font-bold leading-tight sm:text-4xl">Bring your ideas to life.</h3>
           <p class="mt-3 text-sm text-white/75">Explore creative tools for video and beyond.</p>
-          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">Explore Runway <ArrowUpRightIcon class="size-5" /></span>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">Explore Runway <UiSimpleArrow class="size-5" /></span>
         </div>
       </NuxtLink>
       <NuxtLink to="/product/7" class="group relative isolate flex min-h-[290px] overflow-hidden rounded-[30px] bg-[#1b3159] p-7 text-white sm:min-h-[350px] sm:p-10">
@@ -25,7 +24,7 @@ import { ArrowUpRightIcon } from '@heroicons/vue/24/outline'
           <span class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-md">Digital essentials</span>
           <h3 class="mt-auto text-3xl font-bold leading-tight">Upgrade your everyday.</h3>
           <p class="mt-3 text-sm text-white/75">Explore software built for modern workflows.</p>
-          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">See Windows 11 <ArrowUpRightIcon class="size-5" /></span>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">See Windows 11 <UiSimpleArrow class="size-5" /></span>
         </div>
       </NuxtLink>
     </div>

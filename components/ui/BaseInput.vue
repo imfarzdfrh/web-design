@@ -22,7 +22,7 @@ function onInput(event: Event) {
       :value="modelValue ?? ''"
       :placeholder="placeholder"
       v-bind="$attrs"
-      class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[#8175ec] focus:ring-4 focus:ring-[#8175ec]/10"
+      class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] px-4 py-3 text-sm text-[var(--ink)] placeholder:text-[var(--muted)]"
       @input="onInput"
     />
   </div>

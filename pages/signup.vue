@@ -66,7 +66,7 @@ const handleRegister = async () => {
 
     <!-- Left side (Image) -->
     <div class="hidden lg:w-1/2 lg:block">
-      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover" />
+      <img src="~/assets/images/login-page-light.jpg" class="w-full h-full object-cover" />
     </div>
 
     <!-- Right side (Register Form) -->
@@ -82,7 +82,7 @@ const handleRegister = async () => {
           <button
             class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
             <img
-              src="/assets/images/united-kingdom-flag.png"
+              src="~/assets/images/united-kingdom-flag.png"
               alt="English Flag"
               class="w-5 h-5 mr-2" />
             EN

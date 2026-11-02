@@ -6,6 +6,7 @@ export interface CartItem {
   title: string
   image: string
   logo: string
+  logodark?: string
   price: number
   quantity: number
 }
@@ -16,6 +17,7 @@ type CartProduct = {
   title?: string
   image?: string
   logo?: string
+  logodark?: string
   price: number | string
 }
 
@@ -33,6 +35,8 @@ export const useCartStore = defineStore('cart', {
       const item = this.cartItems.find(i => i.id === product.id)
       if (item) {
         item.quantity += count
+        // Refresh theme-specific metadata when upgrading an older saved cart.
+        if (product.logodark) item.logodark = product.logodark
         return
       }
       const price = Number(String(product.price).replace(/[^0-9.]/g, ''))
@@ -42,6 +46,7 @@ export const useCartStore = defineStore('cart', {
         title: product.title ?? product.name,
         image: product.image ?? product.logo ?? '',
         logo: product.logo ?? product.image ?? '',
+        logodark: product.logodark,
         price: Number.isFinite(price) ? price : 0,
         quantity: count
       })

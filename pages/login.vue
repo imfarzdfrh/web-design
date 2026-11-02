@@ -56,7 +56,7 @@ async function handleLogin() {
   <div class="auth-page relative isolate min-h-[100svh] overflow-hidden bg-[var(--page)] text-[var(--ink)]">
     <div class="grid min-h-[100svh] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
       <!-- Branded artwork. Kept out of the form's keyboard and screen-reader flow. -->
-      <aside class="auth-art relative isolate hidden overflow-hidden bg-[#0c0d1e] lg:flex lg:min-h-[680px] lg:flex-col" aria-hidden="true">
+      <aside class="auth-art relative isolate hidden overflow-hidden bg-[#0c0d1e] lg:flex lg:min-h-[680px] lg:flex-col">
         <img
           :src="lightVisual"
           alt=""
@@ -70,7 +70,7 @@ async function handleLogin() {
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#08091a]/55 via-[#08091a]/10 to-[#08091a]/80" />
         <div class="absolute inset-0 -z-10 bg-[#08091a]/20" />
 
-        <NuxtLink to="/" tabindex="-1" class="m-10 inline-flex w-fit items-center gap-3 text-white xl:m-14">
+        <NuxtLink to="/" class="m-10 inline-flex w-fit items-center gap-3 text-white xl:m-14">
           <span class="flex size-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl">
             <SparklesIcon class="size-5" />
           </span>
@@ -115,7 +115,7 @@ async function handleLogin() {
         <div class="flex flex-1 items-center justify-center py-12 sm:py-16">
           <div class="w-full max-w-[430px]">
             <div class="mb-8">
-              <span class="mb-6 inline-flex size-13 items-center justify-center rounded-2xl bg-[var(--accent-soft)] p-3 text-[var(--accent)] sm:hidden">
+              <span class="mb-6 inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--accent-soft)] p-3 text-[var(--accent)] sm:hidden">
                 <SparklesIcon class="size-full" />
               </span>
               <p class="eyebrow">WELCOME BACK</p>

@@ -25,6 +25,11 @@ defineProps<{
           class="w-full h-48 transform group-hover:scale-105 transition duration-300"
         />
 
+        <!-- Use the product's dedicated light/dark logo without changing its banner. -->
+        <span class="absolute left-3 top-3 flex size-12 items-center justify-center rounded-xl bg-white/90 p-2 shadow-sm dark:bg-[#1e2541]/90">
+          <UiProductLogo :name="product.name" :logo="product.logo || product.image" :logodark="product.logodark" class="size-full" />
+        </span>
+
         <!-- Price Badge -->
         <span
           class="absolute top-3 right-3 bg-black/80 text-white text-sm px-3 py-1 rounded-full"

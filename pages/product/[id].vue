@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useProductStore } from '~/stores/product'
 import { useCartStore } from '~/stores/cart'
-import { ArrowLeftIcon, ShoppingBagIcon, PlusIcon, MinusIcon, CheckCircleIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
+import { ShoppingBagIcon, PlusIcon, MinusIcon, CheckCircleIcon } from '@heroicons/vue/24/outline'
 const route = useRoute()
 const productStore = useProductStore()
 const cart = useCartStore()
@@ -21,7 +21,7 @@ function addToCart() {
 </script>
 <template>
   <div class="page-shell py-10 sm:py-14">
-    <NuxtLink to="/productpage" class="mb-8 inline-flex items-center gap-2 text-sm font-bold text-muted hover:text-[var(--accent)]"><ArrowLeftIcon class="size-4" /> Back to collection</NuxtLink>
+    <NuxtLink to="/productpage" class="mb-8 inline-flex items-center gap-2 text-sm font-bold text-muted hover:text-[var(--accent)]"><UiSimpleArrow direction="left" class="size-4" /> Back to collection</NuxtLink>
     <div v-if="product">
       <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
         <div class="surface flex min-h-[330px] items-center justify-center overflow-hidden rounded-[34px] bg-gradient-to-br from-[#ebe8ff] to-[#dff8fc] p-8 dark:from-[#292a4a] dark:to-[#203f4b]">
@@ -47,7 +47,7 @@ function addToCart() {
             <button type="button" class="button-primary inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-bold" @click="addToCart">
               <CheckCircleIcon v-if="added" class="size-5" /><ShoppingBagIcon v-else class="size-5" /> {{ added ? 'Add another' : 'Add to cart' }} · {{ money(total) }}
             </button>
-            <NuxtLink v-if="added" to="/cart" class="button-quiet inline-flex items-center gap-2 rounded-2xl px-5 py-4 text-sm font-bold">View cart <ArrowRightIcon class="size-5" /></NuxtLink>
+            <NuxtLink v-if="added" to="/cart" class="button-quiet inline-flex items-center gap-2 rounded-2xl px-5 py-4 text-sm font-bold">View cart <UiSimpleArrow class="size-5" /></NuxtLink>
           </div>
         </div>
       </div>

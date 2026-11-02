@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRightIcon, PlayCircleIcon, SparklesIcon, ShieldCheckIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
+import { PlayCircleIcon, SparklesIcon, ShieldCheckIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -19,7 +19,7 @@ import { ArrowRightIcon, PlayCircleIcon, SparklesIcon, ShieldCheckIcon, CursorAr
         </p>
         <div class="mt-9 flex flex-wrap items-center gap-3">
           <NuxtLink to="/productpage" class="button-primary inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-bold">
-            Explore products <ArrowRightIcon class="size-5" />
+            Explore products <UiSimpleArrow class="size-5" />
           </NuxtLink>
           <a href="#featured" class="button-quiet inline-flex items-center gap-2 rounded-2xl px-6 py-4 text-sm font-bold">
             <PlayCircleIcon class="size-5" /> See what's featured
@@ -61,7 +61,7 @@ import { ArrowRightIcon, PlayCircleIcon, SparklesIcon, ShieldCheckIcon, CursorAr
           </div>
           <div class="mt-9 flex items-center justify-between rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-4 text-xs text-muted">
             <span>Find the right tools for your workflow</span>
-            <ArrowRightIcon class="size-4 text-[#8071ed]" />
+            <UiSimpleArrow class="size-4 text-[#8071ed]" />
           </div>
         </div>
       </div>

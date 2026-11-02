@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export interface Product {
   id: number
@@ -14,7 +14,7 @@ export interface Product {
 }
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref([
+  const products = ref<Product[]>([
     {
       id: 1,
       name: 'Chatgpt',
@@ -175,7 +175,7 @@ TPM: Trusted Platform Module (TPM 2.0)
 
   function searchProducts(query: string) {
     const list = filteredProducts.value
-    return list.filter(product => product.name.toLowerCase().includes(query.toLowerCase()))
+    return list.filter(product => [product.name, product.title, product.description].some(text => text.toLowerCase().includes(query.toLowerCase())))
   }
 
   return {

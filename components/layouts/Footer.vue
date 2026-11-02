@@ -1,48 +1,19 @@
-<script setup lang="ts"></script>
-
+<script setup lang="ts">
+import { SparklesIcon, ArrowUpRightIcon } from '@heroicons/vue/24/outline'
+</script>
 <template>
-  <footer class="bottom-0 left-0 right-0 py-16 text-white bg-gray-900 dark:bg-darkBackground w-full h-[5%]">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col items-center md:flex-row md:justify-between">
-        <!-- Links Section -->
-        <div class="mb-4 md:mb-0">
-          <ul class="flex space-x-7">
-            <li>
-              <a href="/" class="hover:text-gray-400 dark:hover:text-gray-300"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a href="/about" class="hover:text-gray-400 dark:hover:text-gray-300"
-                >About</a
-              >
-            </li>
-            <li>
-              <a href="/services" class="hover:text-gray-400 dark:hover:text-gray-300"
-                >Services</a
-              >
-            </li>
-            <li>
-              <a href="/contact" class="hover:text-gray-400 dark:hover:text-gray-300"
-                >Contact</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <!-- Social Media Links with SVG Icons -->
-        <div class="flex mb-4 space-x-6 md:mb-0">
-          <UiBaseIcon name="facebook" size="28" color="#fff" />
-          <UiBaseIcon name="xtwitter" size="28" color="#fff" />
-          <UiBaseIcon name="linkedin" size="28" color="#fff" />
-          <UiBaseIcon name="instagram" size="28" color="#fff" />
-        </div>
+  <footer class="mt-16 border-t border-[var(--stroke)] bg-[var(--panel)]">
+    <div class="page-shell grid gap-10 py-12 sm:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <NuxtLink to="/" class="inline-flex items-center gap-3 text-xl font-bold"><span class="button-primary flex size-10 items-center justify-center rounded-2xl"><SparklesIcon class="size-5" /></span>MySite.</NuxtLink>
+        <p class="mt-4 max-w-sm text-sm leading-7 text-muted">A curated home for useful digital products. Find what inspires your next project.</p>
       </div>
-
-      <!-- Copyright -->
-      <div class="mt-10 text-center text-gray-400 dark:text-gray-300">
-        <p>&copy; 2025 Your Company. All rights reserved.</p>
-      </div>
+      <div><h2 class="text-sm font-bold">Explore</h2><nav class="mt-4 grid gap-3 text-sm text-muted"><NuxtLink to="/productpage" class="hover:text-[var(--accent)]">All products</NuxtLink><NuxtLink to="/productpage?category=AI%20Chatbot" class="hover:text-[var(--accent)]">AI assistants</NuxtLink><NuxtLink to="/productpage?category=Operating%20System" class="hover:text-[var(--accent)]">Software</NuxtLink></nav></div>
+      <div><h2 class="text-sm font-bold">MySite</h2><nav class="mt-4 grid gap-3 text-sm text-muted"><NuxtLink to="/about" class="hover:text-[var(--accent)]">About</NuxtLink><NuxtLink to="/contact" class="hover:text-[var(--accent)]">Contact</NuxtLink><NuxtLink to="/cart" class="hover:text-[var(--accent)]">Your cart</NuxtLink></nav></div>
+    </div>
+    <div class="page-shell flex flex-wrap items-center justify-between gap-3 border-t border-[var(--stroke)] py-6 text-xs text-muted">
+      <p>© {{ new Date().getFullYear() }} MySite. All rights reserved.</p>
+      <NuxtLink to="/contact" class="inline-flex items-center gap-1 font-semibold hover:text-[var(--accent)]">Get in touch <ArrowUpRightIcon class="size-4" /></NuxtLink>
     </div>
   </footer>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SparklesIcon, ArrowUpRightIcon } from '@heroicons/vue/24/outline'
+import { SparklesIcon } from '@heroicons/vue/24/outline'
 </script>
 <template>
   <footer class="mt-16 border-t border-[var(--stroke)] bg-[var(--panel)]">
@@ -13,7 +13,7 @@ import { SparklesIcon, ArrowUpRightIcon } from '@heroicons/vue/24/outline'
     </div>
     <div class="page-shell flex flex-wrap items-center justify-between gap-3 border-t border-[var(--stroke)] py-6 text-xs text-muted">
       <p>© {{ new Date().getFullYear() }} MySite. All rights reserved.</p>
-      <NuxtLink to="/contact" class="inline-flex items-center gap-1 font-semibold hover:text-[var(--accent)]">Get in touch <ArrowUpRightIcon class="size-4" /></NuxtLink>
+      <NuxtLink to="/contact" class="inline-flex items-center gap-1 font-semibold hover:text-[var(--accent)]">Get in touch <UiSimpleArrow class="size-4" /></NuxtLink>
     </div>
   </footer>
 </template>

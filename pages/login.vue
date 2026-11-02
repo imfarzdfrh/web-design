@@ -139,7 +139,7 @@ async function handleLogin() {
                     required
                     :disabled="isLoading"
                     :aria-invalid="Boolean(errorMessage)"
-                    class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-4 text-sm text-[var(--ink)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:ring-4 focus:ring-[#8878f0]/10 disabled:opacity-60"
+                    class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-4 text-sm text-[var(--ink)] placeholder:text-[var(--muted)]/70 disabled:opacity-60"
                     @input="errorMessage = ''"
                   />
                 </div>
@@ -160,7 +160,7 @@ async function handleLogin() {
                     :disabled="isLoading"
                     :aria-invalid="Boolean(errorMessage)"
                     :aria-describedby="errorMessage ? 'login-error' : undefined"
-                    class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-14 text-sm text-[var(--ink)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:ring-4 focus:ring-[#8878f0]/10 disabled:opacity-60"
+                    class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-14 text-sm text-[var(--ink)] placeholder:text-[var(--muted)]/70 disabled:opacity-60"
                     @input="errorMessage = ''"
                   />
                   <button

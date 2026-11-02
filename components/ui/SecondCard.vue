@@ -14,7 +14,7 @@ defineProps<{
     <div
       v-for="product in products"
       :key="product.id"
-      class="group rounded-2xl bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+      class="surface card-lift group cursor-pointer overflow-hidden rounded-2xl"
       @click="onView(product.id)"
     >
       <!-- Image -->

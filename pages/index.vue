@@ -1,38 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-const isContentLoaded = ref(false)
-
-onMounted(() => {
-  setTimeout(() => {
-    isContentLoaded.value = true
-  }, 100)
+useSeoMeta({
+  title: 'MySite — Discover digital tools for every idea',
+  description: 'Explore curated AI assistants, creative apps and digital essentials.'
 })
 </script>
 
 <template>
-  <div class="relative">
-    <!-- 🔝 Banner | Full Width -->
+  <div>
     <LayoutsMainBanner />
-
-    <!-- 🧩 Content with Sidebar -->
-    <div class="flex max-w-screen-2xl mx-20 ">
-      <LayoutsSidebar />
-
-      <main class="flex-1 px-6 py-8">
-        <LayoutsMainProduct />
-        <LayoutsListProduct title="All Products" :categories="[]"/>
-        <LayoutsListProduct title="Operating System" category="Operating System"  />
-        <LayoutsListProduct title="AI Video" category="AI Video"  />
-
-
-        <LayoutsCategory />
-        <LayoutsOverviewSection />
-      </main>
+    <div class="page-shell">
+      <LayoutsCategory />
+      <LayoutsMainProduct />
+      <LayoutsListProduct id="featured" title="Popular right now" subtitle="Start with the tools everyone's exploring" category="Popular" />
+      <LayoutsListProduct title="AI assistants" subtitle="Make the most of every idea" category="AI Chatbot" />
+      <LayoutsListProduct title="Software essentials" subtitle="The foundations for your next project" category="Operating System" />
+      <LayoutsOverviewSection />
     </div>
-
   </div>
 </template>
-
-
-

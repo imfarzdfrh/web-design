@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCartStore } from '~/stores/cart'
+import { useProductStore } from '~/stores/product'
 import { ShoppingBagIcon, TrashIcon, MinusIcon, PlusIcon } from '@heroicons/vue/24/outline'
 const cart = useCartStore()
+const productStore = useProductStore()
+
+// Older persisted carts only contain the standard logo. Recover the dark
+// version from the current catalog without clearing the customer's cart.
+function darkLogoFor(id: number, savedDarkLogo?: string) {
+  return savedDarkLogo || productStore.products.find(product => product.id === id)?.logodark
+}
 const hasItems = computed(() => cart.cartItems.length > 0)
 const money = (amount: number | string) => '$' + (Number(amount) || 0).toFixed(2)
 useSeoMeta({ title: 'Shopping cart | MySite' })
@@ -21,7 +29,12 @@ useSeoMeta({ title: 'Shopping cart | MySite' })
       <div class="space-y-4">
         <article v-for="item in cart.cartItems" :key="item.id" class="surface flex flex-wrap items-center gap-5 rounded-[26px] p-5 sm:flex-nowrap">
           <NuxtLink :to="'/product/' + item.id" class="flex size-24 shrink-0 items-center justify-center rounded-2xl bg-[#eae8fc] p-4 dark:bg-[#333253]">
-            <img :src="item.logo || item.image" :alt="item.name + ' logo'" class="size-full object-contain" />
+            <UiProductLogo
+              :name="item.name"
+              :logo="item.logo || item.image"
+              :logodark="darkLogoFor(item.id, item.logodark)"
+              class="size-full"
+            />
           </NuxtLink>
           <div class="min-w-0 flex-1">
             <NuxtLink :to="'/product/' + item.id" class="text-lg font-bold hover:text-[var(--accent)]">{{ item.name }}</NuxtLink>

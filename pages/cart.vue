@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useCartStore } from '~/stores/cart'
-import { ArrowLeftIcon, ShoppingBagIcon, TrashIcon, MinusIcon, PlusIcon } from '@heroicons/vue/24/outline'
+import { ShoppingBagIcon, TrashIcon, MinusIcon, PlusIcon } from '@heroicons/vue/24/outline'
 const cart = useCartStore()
 const hasItems = computed(() => cart.cartItems.length > 0)
 const money = (amount: number | string) => '$' + (Number(amount) || 0).toFixed(2)
@@ -36,7 +36,7 @@ useSeoMeta({ title: 'Shopping cart | MySite' })
             </div>
           </div>
         </article>
-        <NuxtLink to="/productpage" class="inline-flex items-center gap-2 pt-3 text-sm font-bold text-[var(--accent)]"><ArrowLeftIcon class="size-4" /> Continue shopping</NuxtLink>
+        <NuxtLink to="/productpage" class="inline-flex items-center gap-2 pt-3 text-sm font-bold text-[var(--accent)]"><UiSimpleArrow direction="left" class="size-4" /> Continue shopping</NuxtLink>
       </div>
       <aside class="surface h-fit rounded-[28px] p-7 lg:sticky lg:top-28">
         <h2 class="text-xl font-bold">Order summary</h2>

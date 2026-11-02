@@ -69,12 +69,12 @@ const handleLogin = async () => {
     <div class="hidden lg:w-1/2 lg:block">
       <!-- Light mode image -->
       <img
-        src="/assets/images/login-page-light.jpg"
+        src="~/assets/images/login-page-light.jpg"
         class="h-full object-cover opacity-90 block dark:hidden" />
 
       <!-- Dark mode image -->
       <img
-        src="/assets/images/login-page-dark.jpg"
+        src="~/assets/images/login-page-dark.jpg"
         class="h-full object-cover opacity-90 hidden dark:block" />
     </div>
 
@@ -91,7 +91,7 @@ const handleLogin = async () => {
           <button
             class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
             <img
-              src="/assets/images/united-kingdom-flag.png"
+              src="~/assets/images/united-kingdom-flag.png"
               alt="English Flag"
               class="w-5 h-5 mr-2" />
             EN

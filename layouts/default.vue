@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-lightBackground dark:bg-darkBackground text-darkText dark:text-lightText">
+  <div class="min-h-screen flex flex-col">
     <LayoutsNavBar />
-    <main>
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
     <LayoutsFooter />

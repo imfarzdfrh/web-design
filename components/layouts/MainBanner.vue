@@ -43,19 +43,19 @@ import { PlayCircleIcon, SparklesIcon, ShieldCheckIcon, CursorArrowRaysIcon } fr
           </div>
           <div class="grid grid-cols-2 gap-3 sm:gap-4">
             <NuxtLink to="/product/1" class="card-lift rounded-3xl border border-[var(--stroke)] bg-[#e9e6ff]/80 p-5 text-[#292750] dark:bg-[#302e52]/90 dark:text-white">
-              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2"><img src="/temp/pic/chatgpt.png" alt="" class="size-full object-contain" /></div>
+              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2 dark:bg-[#1e2541]/90"><UiProductLogo name="ChatGPT" logo="/temp/pic/chatgpt.png" logodark="/temp/pic/chatgptdark.png" class="size-full" loading="eager" /></div>
               <p class="mt-9 text-sm font-bold">ChatGPT</p><p class="mt-1 text-xs opacity-70">AI assistant</p>
             </NuxtLink>
             <NuxtLink to="/product/4" class="card-lift translate-y-5 rounded-3xl border border-[var(--stroke)] bg-[#def7fa]/85 p-5 text-[#153f49] dark:bg-[#244750]/90 dark:text-white">
-              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2"><img src="/temp/pic/runaway.png" alt="" class="size-full object-contain" /></div>
+              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2 dark:bg-[#1e2541]/90"><UiProductLogo name="Runway" logo="/temp/pic/runaway.png" logodark="/temp/pic/runawaydark.png" class="size-full" loading="eager" /></div>
               <p class="mt-9 text-sm font-bold">Runway</p><p class="mt-1 text-xs opacity-70">Video creation</p>
             </NuxtLink>
             <NuxtLink to="/product/2" class="card-lift -translate-y-1 rounded-3xl border border-[var(--stroke)] bg-[#f9e9f2]/85 p-5 text-[#583445] dark:bg-[#57354a]/90 dark:text-white">
-              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2"><img src="/temp/pic/deepseek.png" alt="" class="size-full object-contain" /></div>
+              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2 dark:bg-[#1e2541]/90"><UiProductLogo name="DeepSeek" logo="/temp/pic/deepseek.png" logodark="/temp/pic/deepseekdark.png" class="size-full" loading="eager" /></div>
               <p class="mt-9 text-sm font-bold">DeepSeek</p><p class="mt-1 text-xs opacity-70">Smart research</p>
             </NuxtLink>
             <NuxtLink to="/product/7" class="card-lift translate-y-4 rounded-3xl border border-[var(--stroke)] bg-[#e4eefc]/85 p-5 text-[#254366] dark:bg-[#293d5b]/90 dark:text-white">
-              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2"><img src="/temp/pic/windows11-icon.png" alt="" class="size-full object-contain" /></div>
+              <div class="flex size-16 items-center justify-center rounded-2xl bg-white/85 p-2 dark:bg-[#1e2541]/90"><UiProductLogo name="Windows 11" logo="/temp/pic/windows11-icon.png" logodark="/temp/pic/windows11-icon.png" class="size-full" loading="eager" /></div>
               <p class="mt-9 text-sm font-bold">Windows 11</p><p class="mt-1 text-xs opacity-70">Productivity</p>
             </NuxtLink>
           </div>

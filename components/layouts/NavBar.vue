@@ -3,7 +3,7 @@ import { computed, ref, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/stores/auth'
 import { useCartStore } from '~/stores/cart'
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon, ShoppingBagIcon, ChevronDownIcon, SparklesIcon, UserCircleIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon, ShoppingBagIcon, SparklesIcon, UserCircleIcon } from '@heroicons/vue/24/outline'
 
 const auth = useAuthStore()
 const cart = useCartStore()
@@ -50,7 +50,7 @@ function logout() { auth.logout(); router.push('/') }
         <div class="relative">
           <button type="button" class="flex items-center gap-1 text-sm font-semibold text-muted hover:text-[var(--accent)]"
             aria-haspopup="true" :aria-expanded="categoriesOpen" @click="categoriesOpen = !categoriesOpen">
-            Categories <ChevronDownIcon class="size-4 transition" :class="{ 'rotate-180': categoriesOpen }" />
+            Categories <UiSimpleArrow :direction="categoriesOpen ? 'up' : 'down'" class="size-4" />
           </button>
           <div v-if="categoriesOpen" class="glass absolute left-0 top-11 w-56 rounded-2xl p-2 shadow-2xl">
             <NuxtLink v-for="category in categories" :key="category.to" :to="category.to"

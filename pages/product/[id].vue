@@ -29,7 +29,12 @@ function addToCart() {
         </div>
         <div class="self-center">
           <p class="eyebrow">Digital product</p>
-          <h1 class="mt-3 text-4xl font-bold sm:text-5xl">{{ product.name }}</h1>
+          <div class="mt-3 flex items-center gap-4">
+            <span class="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-2.5">
+              <UiProductLogo :name="product.name" :logo="product.logo" :logodark="product.logodark" class="size-full" />
+            </span>
+            <h1 class="text-4xl font-bold sm:text-5xl">{{ product.name }}</h1>
+          </div>
           <p class="mt-4 max-w-xl text-base leading-8 text-muted">{{ product.title }}</p>
           <div class="mt-6 flex flex-wrap gap-2">
             <span v-for="category in product.categories" :key="category" class="rounded-full border border-[var(--stroke)] bg-[var(--panel)] px-3 py-1.5 text-xs font-semibold text-muted">{{ category }}</span>

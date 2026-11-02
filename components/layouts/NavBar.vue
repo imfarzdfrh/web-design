@@ -65,7 +65,7 @@ function logout() { auth.logout(); router.push('/') }
       <form class="relative ml-auto hidden w-full max-w-[360px] items-center md:flex" role="search" @submit.prevent="handleSearch">
         <MagnifyingGlassIcon class="pointer-events-none absolute left-4 size-5 text-muted" aria-hidden="true" />
         <input v-model="searchQuery" aria-label="Search products" type="search" placeholder="Search digital products..."
-          class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-3 pl-11 pr-4 text-sm outline-none transition focus:border-[#8175ec] focus:ring-4 focus:ring-[#8175ec]/10" />
+          class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-3 pl-11 pr-4 text-sm " />
       </form>
 
       <div class="ml-auto flex items-center gap-2 md:ml-0">

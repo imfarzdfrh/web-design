@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { useCookie } from '#app'
 
+// Frontend-only demonstration session. Never treat this as real authentication.
+// A secure production implementation requires a backend-issued, HttpOnly session.
+const DEMO_TOKEN = 'fake-token'
+const DEMO_EMAIL = 'test@test.com'
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null as null | { email: string },
@@ -9,32 +14,33 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     async login(email: string, password: string) {
-      if (email === 'test@test.com' && password === '123456') {
-        this.user = { email }
-        this.token = 'fake-token'
-
-        const token = useCookie('token')
-        token.value = this.token
-
-        return true
-      } else {
+      // Intentionally unavailable in production until a real auth API is connected.
+      if (!import.meta.dev || email !== DEMO_EMAIL || password !== '123456') {
         return false
       }
+
+      this.user = { email: DEMO_EMAIL }
+      this.token = DEMO_TOKEN
+      const token = useCookie<string | null>('token', { sameSite: 'lax' })
+      token.value = DEMO_TOKEN
+      return true
     },
 
     logout() {
       this.user = null
       this.token = null
-
-      const token = useCookie('token')
+      const token = useCookie<string | null>('token')
       token.value = null
     },
 
     fetchUser() {
-      const token = useCookie('token')
-      if (token.value) {
-        this.token = token.value
-        this.user = { email: 'test@test.com' } 
+      const token = useCookie<string | null>('token')
+      if (import.meta.dev && token.value === DEMO_TOKEN) {
+        this.user = { email: DEMO_EMAIL }
+        this.token = DEMO_TOKEN
+      } else {
+        this.user = null
+        this.token = null
       }
     }
   },

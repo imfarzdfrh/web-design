@@ -96,7 +96,10 @@ function logout() { auth.logout(); router.push('/') }
         <NuxtLink to="/about" class="rounded-xl p-3 font-semibold hover:bg-[var(--accent-soft)]">About</NuxtLink>
         <NuxtLink to="/contact" class="rounded-xl p-3 font-semibold hover:bg-[var(--accent-soft)]">Contact</NuxtLink>
         <NuxtLink v-if="!isLoggedIn" to="/login" class="rounded-xl p-3 font-semibold text-[var(--accent)] sm:hidden">Sign in</NuxtLink>
-        <button v-else type="button" class="rounded-xl p-3 text-left text-sm text-muted" @click="logout">Sign out</button>
+        <template v-else>
+          <NuxtLink to="/dashboard" class="rounded-xl p-3 text-sm font-semibold text-[var(--accent)]">My account</NuxtLink>
+          <button type="button" class="rounded-xl p-3 text-left text-sm text-muted" @click="logout">Sign out</button>
+        </template>
       </nav>
     </div>
   </header>

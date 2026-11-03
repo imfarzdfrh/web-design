@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {
-  ArrowLeftIcon,
   CheckCircleIcon,
   EnvelopeIcon,
   EyeIcon,
@@ -25,12 +24,17 @@ const password = ref('')
 const showPassword = ref(false)
 const isLoading = ref(false)
 const errorMessage = ref('')
+const isDemo = import.meta.dev
 
 const auth = useAuthStore()
 const router = useRouter()
 
 async function handleLogin() {
   if (isLoading.value) return
+  if (!isDemo) {
+    errorMessage.value = 'Sign-in is not available until secure account services are connected.'
+    return
+  }
 
   errorMessage.value = ''
   isLoading.value = true
@@ -102,11 +106,11 @@ async function handleLogin() {
 
         <header class="flex w-full items-center justify-between gap-4">
           <NuxtLink to="/" class="inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:text-[var(--accent)] lg:hidden">
-            <ArrowLeftIcon class="size-4" />
+            <UiSimpleArrow direction="left" class="size-4" />
             Back to store
           </NuxtLink>
           <NuxtLink to="/" class="hidden items-center gap-2 text-sm font-semibold text-muted transition hover:text-[var(--accent)] lg:inline-flex">
-            <ArrowLeftIcon class="size-4" />
+            <UiSimpleArrow direction="left" class="size-4" />
             Back to store
           </NuxtLink>
           <UiThemeSwitcher />
@@ -121,6 +125,9 @@ async function handleLogin() {
               <p class="eyebrow">WELCOME BACK</p>
               <h1 class="mt-3 text-[clamp(2.25rem,4vw,3.15rem)] font-bold leading-tight tracking-tight">Sign in to MySite<span class="text-[var(--accent)]">.</span></h1>
               <p class="mt-3 text-sm leading-7 text-muted">Welcome back! Enter your details to continue.</p>
+              <p class="mt-4 rounded-xl border border-[var(--stroke)] bg-[var(--accent-soft)] px-4 py-3 text-xs leading-6 text-muted">
+                {{ isDemo ? 'Demo sign-in only. This is not a real customer account.' : 'Secure sign-in is not connected yet. Account access is unavailable.' }}
+              </p>
             </div>
 
             <form class="space-y-5" @submit.prevent="handleLogin">
@@ -137,7 +144,7 @@ async function handleLogin() {
                     inputmode="email"
                     placeholder="you@example.com"
                     required
-                    :disabled="isLoading"
+                    :disabled="isLoading || !isDemo"
                     :aria-invalid="Boolean(errorMessage)"
                     class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-4 text-sm text-[var(--ink)] placeholder:text-[var(--muted)]/70 disabled:opacity-60"
                     @input="errorMessage = ''"
@@ -157,7 +164,7 @@ async function handleLogin() {
                     autocomplete="current-password"
                     placeholder="Enter your password"
                     required
-                    :disabled="isLoading"
+                    :disabled="isLoading || !isDemo"
                     :aria-invalid="Boolean(errorMessage)"
                     :aria-describedby="errorMessage ? 'login-error' : undefined"
                     class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] py-4 pl-12 pr-14 text-sm text-[var(--ink)] placeholder:text-[var(--muted)]/70 disabled:opacity-60"
@@ -187,14 +194,14 @@ async function handleLogin() {
 
               <button
                 type="submit"
-                :disabled="isLoading"
+                :disabled="isLoading || !isDemo"
                 class="button-primary mt-2 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl px-6 py-4 text-sm font-bold disabled:cursor-wait disabled:opacity-70"
               >
                 <svg v-if="isLoading" class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" opacity=".3" />
                   <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
                 </svg>
-                <span>{{ isLoading ? 'Signing in…' : 'Sign in' }}</span>
+                <span>{{ isLoading ? 'Signing in…' : isDemo ? 'Sign in to demo' : 'Sign-in unavailable' }}</span>
                 <UiSimpleArrow v-if="!isLoading" class="size-4" />
               </button>
             </form>

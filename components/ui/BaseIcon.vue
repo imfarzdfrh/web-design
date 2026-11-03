@@ -1,86 +1,51 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import { computed } from 'vue'
+import type { CSSProperties } from 'vue'
+import type { ICON_SET } from '~/constants/Icons'
+import facebook from '~/assets/icons/facebook.svg?url'
+import instagram from '~/assets/icons/instagram.svg?url'
+import linkedin from '~/assets/icons/linkedin.svg?url'
+import xtwitter from '~/assets/icons/xtwitter.svg?url'
 
-const props = defineProps({
-  name: {
-    type: String as PropType<IIconName>,
-    required: true
-  },
-  size: {
-    type: String,
-    default: '28'
-  },
-  color: {
-    type: String,
-    default: '#fff'
-  },
+type IconName = (typeof ICON_SET)[number]
+
+const props = withDefaults(defineProps<{
+  name: IconName
+  size?: string
+  color?: string
+}>(), {
+  size: '28',
+  color: 'currentColor'
 })
 
-const iconEl = ref<HTMLDivElement>()
-const svgCache = new Map<string, string>()
-
-const loadSVGIcon = async () => {
-  if (!iconEl.value) return
-
-  try {
-    let svgContent: string
-    if (svgCache.has(props.name)) svgContent = svgCache.get(props.name)!
-    else {
-      const svgModule = await import(`assets/icons/${props.name}.svg?raw`)
-      svgContent = svgModule.default
-      svgCache.set(props.name, svgContent)
-    }
-
-    if (!iconEl.value) return
-
-    iconEl.value.innerHTML = svgContent
-    const svgElement = iconEl.value.querySelector('svg')
-    if (svgElement) {
-      setSize(svgElement)
-      setColor(svgElement, svgContent)
-    }
-  } catch (error) {
-    console.error(error)
-  }
+const icons: Record<IconName, string> = {
+  facebook,
+  instagram,
+  linkedin,
+  xtwitter
 }
 
-const setSize = (svgElement: SVGElement) => {
-  svgElement.setAttribute('width', props.size)
-  svgElement.setAttribute('height', props.size)
-}
-
-const setColor = (svgElement: SVGElement) => {
-  svgElement.setAttribute('fill', 'currentColor')
-  svgElement.classList.add('fill-current')
-}
-
-watch(
-  () => props.name,
-  () => loadSVGIcon()
-)
-
-watch(
-  () => props.size,
-  () => {
-    const svgElement = iconEl.value?.querySelector('svg')
-    if (svgElement) setSize(svgElement)
-  }
-)
-
-watch(
-  () => props.color,
-  () => {
-    const svgElement = iconEl.value?.querySelector('svg')
-    if (svgElement) {
-      const svgContent = svgCache.get(props.name) || ''
-      setColor(svgElement, svgContent)
-    }
-  }
-)
-
-watchEffect(loadSVGIcon)
+const sizeValue = computed(() => /^\d+(?:\.\d+)?$/.test(props.size) ? props.size + 'px' : props.size)
+const iconStyle = computed<CSSProperties>(() => ({
+  width: sizeValue.value,
+  height: sizeValue.value,
+  backgroundColor: props.color,
+  maskImage: 'url("' + icons[props.name] + '")',
+  maskRepeat: 'no-repeat',
+  maskPosition: 'center',
+  maskSize: 'contain',
+  WebkitMaskImage: 'url("' + icons[props.name] + '")',
+  WebkitMaskRepeat: 'no-repeat',
+  WebkitMaskPosition: 'center',
+  WebkitMaskSize: 'contain'
+}))
 </script>
 
 <template>
-  <div ref="iconEl" />
+  <span
+    class="inline-block shrink-0"
+    :style="iconStyle"
+    role="img"
+    :aria-label="name"
+  />
 </template>

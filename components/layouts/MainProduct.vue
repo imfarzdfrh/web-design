@@ -1,35 +1,32 @@
 <script setup lang="ts">
-
 </script>
-
 <template>
-    <div class="py-12">
-      <div class="relative w-full max-w-6xl mx-auto transition-transform transform shadow-xl duration-600 opacity-90 hover:opacity-100 rounded-xl h-80 hover:scale-105">
-        <img src="/temp/pic/banner3.png" alt="Image 1" class="object-cover w-full h-full rounded-xl">
-        <div class="absolute p-3 text-white bottom-4 left-4">
-          <h2 class="text-2xl font-bold py-4">A New Krea</h2>
-          <p class="py-2">Announcing our Series B</p>
-          <UiBaseButton class="px-4 py-2 mt-2 ">Read more</UiBaseButton>
-        </div>
-      </div>
-      <div class="flex justify-center m-2 space-x-6">
-        <div class="relative w-1/3 m-5 my-5 transition-transform duration-300 bg-gray-300 shadow-md opacity-90 h-80 rounded-xl hover:opacity-100 teansform hover:scale-105">
-          <img src="/temp/pic/banner2.png" alt="Image 2" class="object-cover w-full h-full rounded-xl">
-          <div class="absolute p-3 text-white bottom-4 left-4">
-            <h2 class="text-2xl font-bold ">New Tool</h2>
-            <p class="py-1">Change the style of any video</p>
-            <UiBaseButton class="px-4 py-2 mt-2">Restyle Videos</UiBaseButton>
-          </div>
-        </div>
-        <div class="relative w-1/3 m-5 my-5 transition-transform duration-300 bg-gray-300 shadow-md opacity-90 hover:opacity-100 h-80 rounded-xl teansform hover:scale-105">
-          <img src="/temp/pic/banner1.png" alt="Image 3" class="object-cover w-full h-full rounded-xl">
-          <div class="absolute p-3 text-white bottom-4 left-4">
-            <h2 class="text-2xl font-bold">Exciting Update</h2>
-            <p class="py-1">Discover the latest features</p>
-            <UiBaseButton  class="px-6 py-2 mt-2 ">Learn more</UiBaseButton>
-          </div>
-        </div>
-      </div>
+  <section class="py-9 sm:py-14" aria-labelledby="spotlight-heading">
+    <div class="mb-6">
+      <p class="eyebrow">The spotlight</p>
+      <h2 id="spotlight-heading" class="mt-2 text-2xl font-bold sm:text-3xl">A little inspiration goes a long way</h2>
     </div>
-  </template>
-  
+    <div class="grid gap-4 md:grid-cols-[1.2fr_.8fr]">
+      <NuxtLink to="/product/4" class="group relative isolate flex min-h-[290px] overflow-hidden rounded-[30px] bg-[#171b31] p-7 text-white sm:min-h-[350px] sm:p-10">
+        <img src="/temp/pic/banner3.png" alt="" loading="lazy" class="absolute inset-0 -z-20 h-full w-full object-cover opacity-55 transition duration-700 group-hover:scale-105" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#111426]/95 via-[#111426]/60 to-transparent"></div>
+        <div class="flex max-w-sm flex-col items-start">
+          <span class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-md">For creators</span>
+          <h3 class="mt-auto text-3xl font-bold leading-tight sm:text-4xl">Bring your ideas to life.</h3>
+          <p class="mt-3 text-sm text-white/75">Explore creative tools for video and beyond.</p>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">Explore Runway <UiSimpleArrow class="size-5" /></span>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/product/7" class="group relative isolate flex min-h-[290px] overflow-hidden rounded-[30px] bg-[#1b3159] p-7 text-white sm:min-h-[350px] sm:p-10">
+        <img src="/temp/pic/windows11-banner.jpg" alt="" loading="lazy" class="absolute inset-0 -z-20 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#11233c]/95 via-[#11233c]/50 to-transparent"></div>
+        <div class="flex max-w-sm flex-col items-start">
+          <span class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-md">Digital essentials</span>
+          <h3 class="mt-auto text-3xl font-bold leading-tight">Upgrade your everyday.</h3>
+          <p class="mt-3 text-sm text-white/75">Explore software built for modern workflows.</p>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold">See Windows 11 <UiSimpleArrow class="size-5" /></span>
+        </div>
+      </NuxtLink>
+    </div>
+  </section>
+</template>

@@ -1,137 +1,70 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import BaseInput from '~/components/ui/BaseInput.vue'
+import { computed, ref } from 'vue'
 import { useProductStore } from '~/stores/product'
 import { useCartStore } from '~/stores/cart'
-
+import { ShoppingBagIcon, PlusIcon, MinusIcon, CheckCircleIcon } from '@heroicons/vue/24/outline'
 const route = useRoute()
-const productId = Number(route.params.id)
-const store = useProductStore()
-
-const product = computed(() => store.products.find(p => p.id === productId) ?? null)
+const productStore = useProductStore()
+const cart = useCartStore()
+const product = computed(() => productStore.products.find(item => item.id === Number(route.params.id)) ?? null)
 const quantity = ref(1)
-const discountCode = ref('')
-const isFavorite = ref(false)
-
-const totalPrice = computed(() => {
-  const base = product.value?.price ?? 0
-  const discount = discountCode.value === 'OFF10' ? 0.9 : 1
-  return (base * quantity.value * discount).toFixed(2)
-})
-
-const cartStore = useCartStore()
-
+const added = ref(false)
+const unitPrice = computed(() => Number(product.value?.price ?? 0))
+const total = computed(() => unitPrice.value * quantity.value)
+const money = (amount: number) => '$' + amount.toFixed(2)
+useHead(() => ({ title: product.value ? product.value.name + ' | MySite' : 'Product not found | MySite' }))
 function addToCart() {
-  if (product.value) {
-    cartStore.addToCart(product.value)
-    alert(`Added ${quantity.value} of ${product.value.name} to cart.`)
-  }
-}
-
-function toggleFavorite() {
-  isFavorite.value = !isFavorite.value
-}
-
-function increaseQty() {
-  quantity.value++
-}
-
-function decreaseQty() {
-  if (quantity.value > 1) quantity.value--
+  if (!product.value) return
+  cart.addToCart(product.value, quantity.value)
+  added.value = true
 }
 </script>
-
 <template>
-  <div
-    class="relative h-full">
-    <div class="container mx-auto py-12 px-4">
-      <div v-if="product" class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div>
-          <img :src="product.image" alt="Product Image" class="w-full rounded-2xl shadow-2xl" />
+  <div class="page-shell py-10 sm:py-14">
+    <NuxtLink to="/productpage" class="mb-8 inline-flex items-center gap-2 text-sm font-bold text-muted hover:text-[var(--accent)]"><UiSimpleArrow direction="left" class="size-4" /> Back to collection</NuxtLink>
+    <div v-if="product">
+      <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
+        <div class="surface flex min-h-[330px] items-center justify-center overflow-hidden rounded-[34px] bg-gradient-to-br from-[#ebe8ff] to-[#dff8fc] p-8 dark:from-[#292a4a] dark:to-[#203f4b]">
+          <img :src="product.image" :alt="product.name" class="max-h-[350px] w-full rounded-2xl object-contain shadow-[0_25px_60px_rgba(11,15,30,.18)]" />
         </div>
-        <div>
-          <div class="flex justify-between items-start">
-            <h1 class="text-4xl font-bold">{{ product.name }}</h1>
-            <button @click="toggleFavorite" class="p-2 rounded-full hover:bg-gray-100">
-              <HeartIcon />
-            </button>
+        <div class="self-center">
+          <p class="eyebrow">Digital product</p>
+          <div class="mt-3 flex items-center gap-4">
+            <span class="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-2.5">
+              <UiProductLogo :name="product.name" :logo="product.logo" :logodark="product.logodark" class="size-full" />
+            </span>
+            <h1 class="text-4xl font-bold sm:text-5xl">{{ product.name }}</h1>
           </div>
-          <p class="mt-2">{{ product.title }}</p>
-
-          <div class="font-sans mt-6">
-            <span class="text-3xl font-bold text-gray-900 dark:text-lightText">{{ product.price }}</span>
-            <span class="text-lg font-medium text-gray-500 dark:text-gray-300">/month</span>
+          <p class="mt-4 max-w-xl text-base leading-8 text-muted">{{ product.title }}</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span v-for="category in product.categories" :key="category" class="rounded-full border border-[var(--stroke)] bg-[var(--panel)] px-3 py-1.5 text-xs font-semibold text-muted">{{ category }}</span>
           </div>
-
+          <div class="mt-9"><p class="text-xs font-semibold text-muted">Price per item</p><p class="mt-1 text-4xl font-bold">{{ money(unitPrice) }}</p></div>
           <div class="mt-8">
-            <label class="text-xl font-bold block mb-1 py-2">Quantity</label>
-            <div class="flex items-center gap-2">
-              <button @click="decreaseQty" class="p-2 bg-gray-300 rounded-md hover:bg-gray-300">
-                <ChevronDownIcon class="w-4 h-4 text-black" />
-              </button>
-              <span class="px-4 py-2 border rounded-md w-16 text-center">{{ quantity }}</span>
-              <button @click="increaseQty" class="p-2 bg-gray-300 rounded-md hover:bg-gray-300">
-                <ChevronUpIcon class="w-4 h-4 text-black" />
-              </button>
+            <label class="mb-3 block text-sm font-bold">Quantity</label>
+            <div class="inline-flex items-center gap-4 rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-2">
+              <button type="button" class="button-quiet flex size-10 items-center justify-center rounded-xl" aria-label="Decrease quantity" :disabled="quantity <= 1" @click="quantity = Math.max(1, quantity - 1)"><MinusIcon class="size-5" /></button>
+              <span class="min-w-7 text-center font-bold">{{ quantity }}</span>
+              <button type="button" class="button-quiet flex size-10 items-center justify-center rounded-xl" aria-label="Increase quantity" :disabled="quantity >= 99" @click="quantity = Math.min(99, quantity + 1)"><PlusIcon class="size-5" /></button>
             </div>
           </div>
-
-          <div class="mt-9">
-            <label class="text-lg font-bold">Discount Code</label>
-            <div class="flex gap-2 items-center mt-4">
-              <BaseInput type="text" placeholder="Enter code" />
-              <UiBaseButton color="success" class="">
-                <TagIcon class="w-4 h-4" />
-                <p class="px-2">Apply</p>
-              </UiBaseButton>
-            </div>
-          </div>
-
-          <div class="flex gap-4 mt-6">
-            <UiBaseButton @click="addToCart" size="large">
-              <div class="flex flex-1 gap-5"><ShoppingCartIcon class="w-6 h-6" /> Add to Cart</div>
-            </UiBaseButton>
-            <UiBookMark />
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <button type="button" class="button-primary inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-bold" @click="addToCart">
+              <CheckCircleIcon v-if="added" class="size-5" /><ShoppingBagIcon v-else class="size-5" /> {{ added ? 'Add another' : 'Add to cart' }} · {{ money(total) }}
+            </button>
+            <NuxtLink v-if="added" to="/cart" class="button-quiet inline-flex items-center gap-2 rounded-2xl px-5 py-4 text-sm font-bold">View cart <UiSimpleArrow class="size-5" /></NuxtLink>
           </div>
         </div>
       </div>
-
-      <div v-else class="text-center text-lg text-gray-500 dark:text-lightText">
-        Product not found.
-      </div>
-
-      <div v-if="product" class="mt-16">
-        <h2 class="text-2xl font-semibold mb-4">Descraption</h2>
-        <div class="p-4 bg-gray-200/45 dark:bg-gray-800/50 rounded-lg flex items-start py-10 shadow-sm">
-          <div>
-            <p class="font-semibold">{{ product.name }}</p>
-            <p class="text-sm mt-1">
-              {{ product.description }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="product" class="mt-16">
-        <h2 class="text-2xl font-semibold mb-4">User Reviews</h2>
-        <div class="space-y-4">
-          <div
-            v-for="i in 3"
-            :key="i"
-            class="p-4 bg-gray-200/45 dark:bg-gray-800/50 rounded-lg flex items-start gap-4">
-            <img
-              :src="`https://i.pravatar.cc/40?img=${i}`"
-              class="w-10 h-10 rounded-full object-cover"
-              alt="User avatar" />
-            <div>
-              <p class="font-semibold">User {{ i }}</p>
-              <p class="text-sm mt-1">Great product, very satisfied!</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <section class="surface mt-12 rounded-[28px] p-7 sm:p-10">
+        <h2 class="text-2xl font-bold">About this product</h2>
+        <p class="mt-4 max-w-4xl whitespace-pre-line text-sm leading-8 text-muted">{{ product.description }}</p>
+      </section>
+    </div>
+    <div v-else class="surface rounded-[32px] px-6 py-20 text-center">
+      <h1 class="text-3xl font-bold">Product not found</h1>
+      <p class="mt-3 text-sm text-muted">The product you're looking for isn't in our collection.</p>
+      <NuxtLink to="/productpage" class="button-primary mt-7 inline-flex rounded-2xl px-6 py-4 text-sm font-bold">Browse all products</NuxtLink>
     </div>
   </div>
 </template>
-
-<style></style>

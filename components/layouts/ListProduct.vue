@@ -1,81 +1,26 @@
 <script setup lang="ts">
-import { useProductStore } from '@/stores/product'
-import { computed, ref } from 'vue'
-
-// تعریف props با تایپ کامل
-const props = defineProps<{
-  title: string
-  category?: string         
-}>()
-
+import { computed } from 'vue'
+import { useProductStore } from '~/stores/product'
+const props = defineProps<{ title: string; subtitle?: string; category?: string }>()
 const productStore = useProductStore()
-
-if (props.category) {
-  productStore.setCategory(props.category)
-}
-
-const displayedProducts = computed(() => {
-  if (!props.category) return productStore.products
-
-  return productStore.products.filter(product =>
-    product.categories.includes(props.category!)
-  )
+const products = computed(() => {
+  const filtered = props.category
+    ? productStore.products.filter(product => product.categories.includes(props.category!))
+    : productStore.products
+  return filtered.slice(0, 4)
 })
-
-const currentIndex = ref(0)
-const visibleCount = 4
-const cardWidth = 280
-
-const next = () => {
-  if (currentIndex.value < displayedProducts.value.length - visibleCount) {
-    currentIndex.value++
-  }
-}
-
-const prev = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value--
-  }
-}
+const catalogLink = computed(() => props.category ? { path: '/productpage', query: { category: props.category } } : { path: '/productpage' })
 </script>
 <template>
-  <div class="py-16">
-    <h2 class="text-xl font-bold px-8 py-2">
-      {{ title }}
-    </h2>
-    <div class="relative max-w-7xl mx-auto px-7 group">
-      <!-- Left Button -->
-      <button
-        @click="prev"
-        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        ◀
-      </button>
-
-      <!-- Slider -->
-     <div class="overflow-hidden">
-        <div
-          class="flex gap-5 py-7 transition-transform duration-300 ease-in-out"
-          :style="{ transform: `translateX(-${currentIndex * cardWidth}px)` }">
-          <UiMainCard
-            v-for="item in displayedProducts"
-            :key="item.id"
-            :id="item.id"
-            :name="item.name"
-            :logo="item.logo"
-            :logodark="item.logodark"
-            :title="item.name"
-            :description="item.description"
-            :price="item.price"
-            class="w-[250px] flex-shrink-0"
-          />
-        </div>
-      </div>
-      <!--  Right Button -->
-      <button
-        @click="next"
-        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        ▶
-      </button>
+  <section v-if="products.length" class="scroll-mt-28 py-10 sm:py-14" :aria-label="title">
+    <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
+      <div><p class="eyebrow">Handpicked for you</p><h2 class="mt-2 text-2xl font-bold sm:text-3xl">{{ title }}</h2><p v-if="subtitle" class="mt-2 text-sm text-muted">{{ subtitle }}</p></div>
+      <NuxtLink :to="catalogLink" class="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">View collection <UiSimpleArrow class="size-4" /></NuxtLink>
     </div>
-  </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <UiMainCard v-for="item in products" :key="item.id"
+        :id="item.id" :name="item.name" :logo="item.logo" :logodark="item.logodark"
+        :title="item.title" :description="item.description" :price="item.price" />
+    </div>
+  </section>
 </template>

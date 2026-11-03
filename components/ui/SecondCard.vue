@@ -14,7 +14,7 @@ defineProps<{
     <div
       v-for="product in products"
       :key="product.id"
-      class="group rounded-2xl bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+      class="surface card-lift group cursor-pointer overflow-hidden rounded-2xl"
       @click="onView(product.id)"
     >
       <!-- Image -->
@@ -24,6 +24,11 @@ defineProps<{
           alt="product image"
           class="w-full h-48 transform group-hover:scale-105 transition duration-300"
         />
+
+        <!-- Use the product's dedicated light/dark logo without changing its banner. -->
+        <span class="absolute left-3 top-3 flex size-12 items-center justify-center rounded-xl bg-white/90 p-2 shadow-sm dark:bg-[#1e2541]/90">
+          <UiProductLogo :name="product.name" :logo="product.logo || product.image" :logodark="product.logodark" class="size-full" />
+        </span>
 
         <!-- Price Badge -->
         <span

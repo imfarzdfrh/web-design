@@ -1,70 +1,45 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import { useCartStore } from '@/stores/cart'
-import { Title } from '#components'
-
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  logo: {
-    type: String,
-    required: true
-  },
-  logodark: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: String,
-    required: true
-  }
-})
-
+import { ref } from 'vue'
+import { useCartStore } from '~/stores/cart'
+import { PlusIcon, CheckIcon } from '@heroicons/vue/24/outline'
+const props = defineProps<{
+  id: number
+  name: string
+  logo: string
+  logodark?: string
+  title: string
+  description?: string
+  price: string
+}>()
 const cart = useCartStore()
-
+const added = ref(false)
 function handleAddToCart() {
   cart.addToCart({
-    id: props.id,
-    name: props.name,
-    Title: props.title,
-    price: parseFloat(props.price.replace('$', '')),
-    image: props.logo,
+    id: props.id, name: props.name, title: props.title, logo: props.logo,
+    logodark: props.logodark, price: props.price
   })
+  added.value = true
 }
 </script>
-
 <template>
-  <NuxtLink :to="{ name: 'product-id', params: { id: props.id } }">
-    <div
-      class="flex flex-col space-x-2 transition-transform duration-300 ease-in-out transform bg-white dark:bg-gray-800/50 rounded-lg shadow-lg w-60 h-full hover:scale-105">
-      <img :src="props.logo" class="p-6 dark:hidden" >
-      <img :src="props.logodark" class="p-5 hidden dark:block" >
-
-      <div class="flex flex-col justify-between p-4 h-full">
-        <div>
-          <h3 class="mb-3 text-xl font-bold text-gray-800 dark:text-lightText">
-            {{ props.name }}
-          </h3>
-          <p class="mb-4 text-gray-600 dark:text-lightText">{{ props.title }}</p>
-        </div>
-
-        <div class="flex items-center justify-between mt-auto">
-          <span class="text-lg font-semibold text-gray-800 dark:text-lightText">{{
-            props.price
-          }}</span>
-          <UiBaseButton color="primary" @click.stop="handleAddToCart">Add to Cart</UiBaseButton>
-        </div>
+  <article class="surface card-lift group relative flex h-full min-w-0 flex-col overflow-hidden rounded-[27px] p-4 sm:p-5">
+    <NuxtLink :to="'/product/' + id" class="block" :aria-label="'View ' + name">
+      <div class="relative flex aspect-[1.45] items-center justify-center overflow-hidden rounded-[21px] bg-gradient-to-br from-[#eeebff] via-[#f3f6ff] to-[#e6f9fb] dark:from-[#282c49] dark:via-[#242b43] dark:to-[#1e3d49]">
+        <span class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[10px] font-bold text-[#6259a1] backdrop-blur">Digital</span>
+        <UiProductLogo :name="name" :logo="logo" :logodark="logodark" class="size-20 drop-shadow-xl transition duration-500 group-hover:scale-110 sm:size-24" />
+        <UiSimpleArrow class="absolute right-3 top-3 size-4 text-[#8b8bad]" aria-hidden="true" />
       </div>
+      <div class="mt-5">
+        <h3 class="text-lg font-bold">{{ name }}</h3>
+        <p class="mt-2 min-h-10 text-sm leading-5 text-muted">{{ title }}</p>
+      </div>
+    </NuxtLink>
+    <div class="mt-auto flex items-center justify-between gap-3 border-t border-[var(--stroke)] pt-4">
+      <div><p class="text-[11px] text-muted">From</p><p class="text-xl font-bold">${{ Number(price).toFixed(2) }}</p></div>
+      <button type="button" class="button-primary inline-flex size-11 items-center justify-center rounded-2xl"
+        :aria-label="added ? name + ' added to cart' : 'Add ' + name + ' to cart'" @click="handleAddToCart">
+        <CheckIcon v-if="added" class="size-5" /><PlusIcon v-else class="size-5" />
+      </button>
     </div>
-  </NuxtLink>
+  </article>
 </template>

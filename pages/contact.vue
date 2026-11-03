@@ -77,7 +77,7 @@ const handleSubmit = () => {
               v-model="form.message"
               id="message"
               rows="5"
-              class="w-full p-3 border dark:border-none  rounded-lg focus:outline-none focus:ring-2 dark:bg-gray-800/50"
+              class="w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-3 text-[var(--ink)]"
               placeholder="Enter your message"
               required></textarea>
           </div>

@@ -1,22 +1,17 @@
 <script setup lang="ts">
-import { useTheme } from "@/composables/useTheme";
-
-const { isDarkMode, toggleTheme } = useTheme();
+import { useTheme } from '~/composables/useTheme'
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
+const { isDarkMode, toggleTheme } = useTheme()
 </script>
-
 <template>
   <button
+    type="button"
+    class="button-quiet inline-flex size-10 items-center justify-center rounded-xl"
+    :aria-label="isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'"
+    :title="isDarkMode ? 'Light mode' : 'Dark mode'"
     @click="toggleTheme"
-    class="p-[6px] text-white bg-gray-800 rounded-md dark:bg-[#a93f55] dark:text-gray-300 font-bold"
   >
-    <span v-if="isDarkMode">
-       <SunIcon class="h-6 w-6" />
-
-    </span>
-    <span v-else>
-       <MoonIcon class="h-6 w-6" />
-      
-    </span>
+    <SunIcon v-if="isDarkMode" class="size-5" aria-hidden="true" />
+    <MoonIcon v-else class="size-5" aria-hidden="true" />
   </button>
 </template>
-

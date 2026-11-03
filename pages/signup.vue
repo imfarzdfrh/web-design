@@ -66,7 +66,7 @@ const handleRegister = async () => {
 
     <!-- Left side (Image) -->
     <div class="hidden lg:w-1/2 lg:block">
-      <img src="/assets/images/login-page.jpg" class="w-full h-full object-cover" />
+      <img src="~/assets/images/login-page-light.jpg" class="w-full h-full object-cover" />
     </div>
 
     <!-- Right side (Register Form) -->
@@ -82,22 +82,11 @@ const handleRegister = async () => {
           <button
             class="flex items-center text-sm font-medium dark:text-lightText text-gray-800 hover:text-gray-900">
             <img
-              src="/assets/images/united-kingdom-flag.png"
+              src="~/assets/images/united-kingdom-flag.png"
               alt="English Flag"
               class="w-5 h-5 mr-2" />
             EN
-            <svg
-              class="w-4 h-4 ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7" />
-            </svg>
+            <UiSimpleArrow direction="down" class="ml-2 size-4" />
           </button>
 
           <!-- Dropdown Menu -->

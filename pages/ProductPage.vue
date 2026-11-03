@@ -1,145 +1,77 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useProductStore } from '~/stores/product'
-import { useRouter } from 'vue-router'
-import UiSecondCard from '~/components/ui/SecondCard.vue'
-import BaseInput from '~/components/ui/BaseInput.vue'
+import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
-definePageMeta({
-  name: 'productpage',
-  path: '/productpage'
+definePageMeta({ name: 'productpage', path: '/productpage' })
+useSeoMeta({ title: 'Explore products | MySite', description: 'Browse AI tools, creative software and more.' })
+const productStore = useProductStore()
+const route = useRoute()
+const search = ref('')
+const selectedCategory = ref(typeof route.query.category === 'string' ? route.query.category : 'all')
+const sort = ref('featured')
+const categories = computed(() => [
+  'all',
+  ...new Set(productStore.products.flatMap(product => product.categories.filter(c => !['Popular', 'Top Sellers'].includes(c))))
+])
+watch(() => route.query.category, category => {
+  selectedCategory.value = typeof category === 'string' ? category : 'all'
 })
-
-const store = useProductStore()
-const router = useRouter()
-
-/* Filters */
-const searchTerm = ref('')
-const selectedCategory = ref('all')
-const sortOption = ref('default')
-const minPrice = ref<number | null>(null)
-const maxPrice = ref<number | null>(null)
-
-/* Categories */
-const categories = computed(() => {
-  const cats = store.products.map(p => p.category)
-  return ['all', ...new Set(cats)]
-})
-
-/* Debounced search */
-const debouncedSearch = ref('')
-let timeout: any
-watch(searchTerm, (val) => {
-  clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    debouncedSearch.value = val.toLowerCase()
-  }, 300)
-})
-
-/* Filtered Products */
-const filteredProducts = computed(() => {
-  let result = [...store.products]
-
-  if (selectedCategory.value !== 'all') {
-    result = result.filter(p => p.category === selectedCategory.value)
-  }
-
-  if (debouncedSearch.value) {
-    result = result.filter(p =>
-      p.name.toLowerCase().includes(debouncedSearch.value) ||
-      p.description.toLowerCase().includes(debouncedSearch.value)
-    )
-  }
-
-  if (minPrice.value !== null) {
-    result = result.filter(p => p.price >= minPrice.value!)
-  }
-
-  if (maxPrice.value !== null) {
-    result = result.filter(p => p.price <= maxPrice.value!)
-  }
-
-  if (sortOption.value === 'price-asc') {
-    result.sort((a, b) => a.price - b.price)
-  } else if (sortOption.value === 'price-desc') {
-    result.sort((a, b) => b.price - a.price)
-  }
-
+const products = computed(() => {
+  const q = search.value.trim().toLowerCase()
+  const result = productStore.products.filter(product => {
+    return (selectedCategory.value === 'all' || product.categories.includes(selectedCategory.value))
+      && (!q || [product.name, product.title, product.description].some(field => field.toLowerCase().includes(q)))
+  })
+  if (sort.value === 'price-asc') return [...result].sort((a, b) => Number(a.price) - Number(b.price))
+  if (sort.value === 'price-desc') return [...result].sort((a, b) => Number(b.price) - Number(a.price))
   return result
 })
-
-function viewProduct(id: number) {
-  router.push(`/product/${id}`)
-}
 </script>
-
 <template>
-  <div class="mt-10">
-    <div class="container mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-10">
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-1 bg-white dark:bg-[#001d3d] rounded-2xl p-9 shadow-md space-y-8">
-        
-        <!-- Search -->
-        <div>
-          <BaseInput
-            v-model="searchTerm"
-            type="text"
-            placeholder="Search products..."
-          />
+  <div class="page-shell py-10 sm:py-16">
+    <div class="mb-9">
+      <p class="eyebrow">The collection</p>
+      <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Find your next favorite tool.</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-muted">Discover everything from smart assistants to creative software, in one curated catalog.</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-[275px_minmax(0,1fr)]">
+      <aside class="surface h-fit rounded-[28px] p-5 lg:sticky lg:top-28">
+        <div class="mb-5 flex items-center gap-2"><AdjustmentsHorizontalIcon class="size-5 text-[var(--accent)]" /><h2 class="font-bold">Filter products</h2></div>
+        <label for="catalog-search" class="mb-2 block text-xs font-semibold text-muted">Search</label>
+        <div class="relative">
+          <MagnifyingGlassIcon class="absolute left-3 top-3 size-5 text-muted" />
+          <input id="catalog-search" v-model="search" type="search" placeholder="Product name..."
+            class="w-full rounded-xl border border-[var(--stroke)] bg-[var(--page)] py-3 pl-10 pr-3 text-sm" />
         </div>
-
-        <!-- Category -->
-        <div>
-          <h3 class="font-semibold mb-4">Category</h3>
-          <select v-model="selectedCategory" class="w-full dark:bg-darkBackground px-4 py-3 rounded-lg">
-            <option v-for="cat in categories" :key="cat" :value="cat">
-              {{ cat }}
-            </option>
-          </select>
-        </div>
-
-        <!-- Price Range -->
-        <div>
-          <h3 class="font-semibold mb-4">Price Range</h3>
-          <div class="flex gap-3">
-            <BaseInput
-              type="number"
-              v-model="minPrice"
-              placeholder="Min""
-            />
-            <BaseInput
-              type="number"
-              v-model="maxPrice"
-              placeholder="Max"
-            />
-          </div>
-        </div>
-
-        <!-- Sort -->
-        <div>
-          <h3 class="font-semibold mb-4">Sort By</h3>
-          <select v-model="sortOption" class="w-full px-4 py-3 rounded-lg dark:bg-darkBackground">
-            <option value="default">Default</option>
-            <option value="price-asc">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
-          </select>
-        </div>
-
+        <label for="category-filter" class="mb-2 mt-6 block text-xs font-semibold text-muted">Category</label>
+        <select id="category-filter" v-model="selectedCategory" class="w-full rounded-xl border border-[var(--stroke)] bg-[var(--page)] px-3 py-3 text-sm">
+          <option v-for="category in categories" :key="category" :value="category">{{ category === 'all' ? 'All products' : category }}</option>
+        </select>
+        <label for="sort-filter" class="mb-2 mt-6 block text-xs font-semibold text-muted">Sort by</label>
+        <select id="sort-filter" v-model="sort" class="w-full rounded-xl border border-[var(--stroke)] bg-[var(--page)] px-3 py-3 text-sm">
+          <option value="featured">Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option>
+        </select>
+        <button type="button" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]" @click="search = ''; selectedCategory = 'all'; sort = 'featured'">
+          <XMarkIcon class="size-4" /> Clear filters
+        </button>
       </aside>
-
-      <!-- Products -->
-      <section class="lg:col-span-3">
-        <UiSecondCard
-          :products="filteredProducts"
-          :onView="viewProduct"
-        />
-
-        <div v-if="!filteredProducts.length" class="text-center py-20 opacity-60">
-          No products found 😕
+      <section aria-label="Catalog products">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-lg font-bold">Browse products</h2>
+          <span class="text-sm text-muted">{{ products.length }} {{ products.length === 1 ? 'product' : 'products' }} found</span>
+        </div>
+        <div v-if="products.length" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <UiMainCard v-for="product in products" :key="product.id"
+            :id="product.id" :name="product.name" :logo="product.logo" :logodark="product.logodark" :title="product.title" :description="product.description" :price="product.price" />
+        </div>
+        <div v-else class="surface rounded-[28px] p-12 text-center">
+          <MagnifyingGlassIcon class="mx-auto size-10 text-[var(--accent)]" />
+          <h3 class="mt-4 text-xl font-bold">Nothing matched this search</h3>
+          <p class="mt-2 text-sm text-muted">Try another keyword or clear the filters.</p>
+          <button type="button" class="button-primary mt-6 rounded-xl px-6 py-3 text-sm font-semibold" @click="search = ''; selectedCategory = 'all'; sort = 'featured'">See all products</button>
         </div>
       </section>
-
     </div>
   </div>
 </template>

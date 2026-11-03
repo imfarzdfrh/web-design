@@ -1,43 +1,18 @@
+<script setup lang="ts">
+import { SquaresPlusIcon, LightBulbIcon, DevicePhoneMobileIcon } from '@heroicons/vue/24/outline'
+const features = [
+  { icon: SquaresPlusIcon, title: 'Everything in one place', desc: 'Browse AI tools and useful software without hopping between endless tabs.' },
+  { icon: LightBulbIcon, title: 'Discover what fits', desc: 'Explore focused collections that make finding your next tool easier.' },
+  { icon: DevicePhoneMobileIcon, title: 'Built for every screen', desc: 'A simple, distraction-free shopping experience on desktop and mobile.' }
+]
+</script>
 <template>
-  <section class="py-16">
-    <div class="max-w-screen-xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-extrabold">Website and Service Overview</h2>
-        <p class="mt-4 text-lg">
-          Experience unique and professional use of AI tools and services with us
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 dark:bg-gray-800/50">
-        <div class="dark:bg-darkElement p-6 rounded-lg shadow-lg">
-          <div class="flex items-center justify-center mb-6">
-            <img src="/assets/icons/gif/support.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
-          </div>
-          <h3 class="text-2xl font-semibold">Technical Support</h3>
-          <p class="mt-3 ">
-            We provide support throughout your journey, from setup to ongoing assistance
-          </p>
-        </div>
-
-        <div class="dark:bg-darkElement p-6 rounded-lg shadow-lg">
-          <div class="flex items-center justify-center mb-6">
-            <img src="/assets/icons/gif/stopwatch.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
-          </div>
-          <h3 class="text-2xl font-semibold">Fast Services</h3>
-          <p class="mt-3">
-            Our services are designed for you to achieve your goals with speed and efficiency
-          </p>
-        </div>
-
-        <div class="dark:bg-darkElement p-6 rounded-lg shadow-lg">
-          <div class="flex items-center justify-center mb-6">
-            <img src="/assets/icons/gif/coins.gif" class="w-16 h-16 m-5 invert dark:invert-0" />
-          </div>
-          <h3 class="text-2xl font-semibold">Large Community</h3>
-          <p class="mt-3">
-            Join our network of experts and users to learn from each other's experiences
-          </p>
-        </div>
+  <section class="my-12 rounded-[34px] border border-[var(--stroke)] bg-[var(--panel)] px-5 py-12 sm:px-10 sm:py-16">
+    <div class="mx-auto mb-10 max-w-xl text-center"><p class="eyebrow">Why MySite</p><h2 class="mt-2 text-3xl font-bold">Less searching. More creating.</h2><p class="mt-3 text-sm leading-7 text-muted">Everything you need to explore the world of digital tools, arranged with care.</p></div>
+    <div class="grid gap-7 md:grid-cols-3">
+      <div v-for="feature in features" :key="feature.title" class="rounded-3xl border border-[var(--stroke)] p-6">
+        <span class="mb-5 flex size-12 items-center justify-center rounded-2xl bg-[var(--accent-soft)] text-[var(--accent)]"><component :is="feature.icon" class="size-6" /></span>
+        <h3 class="text-lg font-bold">{{ feature.title }}</h3><p class="mt-3 text-sm leading-7 text-muted">{{ feature.desc }}</p>
       </div>
     </div>
   </section>

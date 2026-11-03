@@ -41,15 +41,13 @@ const buttonSizeClass = computed(() => {
   }
 })
 
-const buttonHoverClass = computed(() => {
-  return 'hover:shadow-[0px_1px_30px_rgba(80,63,205,0.5)]'
-})
+const buttonHoverClass = 'ui-button'
 </script>
 
 <template>
   <button
     :class="[
-      'inline-flex items-center justify-center py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out ',
+      'inline-flex items-center justify-center py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out disabled:opacity-60 ',
       buttonColorClass,
       buttonSizeClass,
       buttonHoverClass
